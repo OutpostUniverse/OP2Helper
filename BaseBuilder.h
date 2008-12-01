@@ -1,5 +1,6 @@
 #pragma once
 
+
 // Note: The following structures are used to 
 //		 define resource and base layouts.
 
@@ -57,6 +58,18 @@ struct StartLocation
 	int y;
 	BaseInfo *baseInfo;
 };
+
+
+// Used to make autosizing the arrays easier
+#define NumberOf(array) (sizeof(array)/sizeof(array[0]))
+// Used to make specifying the size of the array and the array easier
+#define AutoSize(array) NumberOf(array), array
+// Used to quickly fill BaseInfo structs
+#define MakeBaseInfo(beacons, buildings, tubes, walls, vehicles) \
+	{ AutoSize(beacons), AutoSize(buildings), AutoSize(tubes), AutoSize(walls), AutoSize(vehicles) }
+// Deprecated
+#define numof(array) (sizeof(array)/sizeof(array[0]))
+#define autosize(array) NumberOf(array), array
 
 
 // Note: These are very useful for randomizing player start locations and
