@@ -1,3 +1,4 @@
+#pragma once
 
 // Note: This file contains an enum for all the research techIDs
 //		 found in multitek.txt.

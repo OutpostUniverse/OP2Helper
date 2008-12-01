@@ -1,11 +1,6 @@
-// Common header stuff to prevent redefinition errors
-//  if the header is included more than once
-#ifndef OP2HELPER_H
-#define OP2HELPER_H
+#pragma once
 
-// Include the main DLL SDK header file
-// Note: Functions.h includes all the other DLL SDK header files
-#include "..\Outpost2DLL\Outpost2DLL.h"
+#include <Outpost2DLL.h>	// Main Outpost 2 header to interface with the game
 
 // Include other helper header files
 #include "EnumTechID.h"
@@ -48,7 +43,3 @@ void CreateNoCommandCenterFailureCondition();
 // Note: See BaseBuilder.h for specifically designed functions to permute
 //		 a list of starting locations, or a list of mining beacons.
 void RandomizeList(int numItems, int list[]);
-
-
-
-#endif	// End of redefinition error protection

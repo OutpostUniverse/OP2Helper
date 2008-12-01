@@ -1,3 +1,4 @@
+#pragma once
 
 // Note: This file contains an enum for all the sound files.
 //		 The enum names are the sound file names for each value.
