@@ -67,9 +67,11 @@ struct StartLocation
 // Used to quickly fill BaseInfo structs
 #define MakeBaseInfo(beacons, buildings, tubes, walls, vehicles) \
 	{ AutoSize(beacons), AutoSize(buildings), AutoSize(tubes), AutoSize(walls), AutoSize(vehicles) }
+
 // Deprecated
-#define numof(array) (sizeof(array)/sizeof(array[0]))
-#define autosize(array) NumberOf(array), array
+// ** Don't define these, as they'll cause redefinition errors here with old code **
+//#define numof(array) (sizeof(array)/sizeof(array[0]))
+//#define autosize(array) NumberOf(array), array
 
 
 // Note: These are very useful for randomizing player start locations and
