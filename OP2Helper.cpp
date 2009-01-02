@@ -120,4 +120,18 @@ void RandomizeList(int numItems, int list[])
 	}
 }
 
+// Centers the local player's view on their CC, if they have one.
+void CenterViewOnPlayerCC() {
 
+	Unit cc;
+	int localPlayer = TethysGame::LocalPlayer();
+	PlayerBuildingEnum CCs(localPlayer,mapCommandCenter);
+
+	CCs.GetNext(cc);
+
+	if (cc.GetType() == mapCommandCenter) {
+		LOCATION CCloc = cc.Location();
+		Player[localPlayer].CenterViewOn(CCloc.x,CCloc.y);
+	}
+	
+}

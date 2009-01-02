@@ -49,6 +49,7 @@ void CreateNoCommandCenterFailureCondition();
 //		 a list of starting locations, or a list of mining beacons.
 void RandomizeList(int numItems, int list[]);
 
-
+// Centers the local player's screen on their CC, if they have one.
+void CenterViewOnPlayerCC();
 
 #endif	// End of redefinition error protection
