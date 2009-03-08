@@ -1,6 +1,7 @@
 #include "OP2Helper.h"
 
 
+/*
 // Note: Uses TethysGame::GetRand();
 void RandomizeResources(int numItems, struct BeaconInfo resources[])
 {
@@ -38,6 +39,7 @@ void RandomizeStartingLocations(int numLocations, struct StartLocation location[
 		location[next] = temp;
 	}
 }
+*/
 
 
 void CreateBase(int player, int x, int y, struct BaseInfo &baseInfo)

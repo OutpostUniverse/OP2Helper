@@ -1,5 +1,7 @@
 #pragma once
 
+#include "OP2Helper.h"
+
 
 // Note: The following structures are used to 
 //		 define resource and base layouts.
@@ -83,8 +85,11 @@ struct StartLocation
 // Note: These functions are based off of RandomizeList and is used to
 //		 generate a random permutation of the given list.
 
-void RandomizeResources(int numItems, struct BeaconInfo resources[]);
-void RandomizeStartingLocations(int numLocations, struct StartLocation location[]);
+//void RandomizeResources(int numItems, struct BeaconInfo resources[]);
+//void RandomizeStartingLocations(int numLocations, struct StartLocation location[]);
+
+#define RandomizeResources RandomizeList
+#define RandomizeStartingLocations RandomizeList
 
 // Base/Resource Placement
 void CreateBase(int player, int x, int y, BaseInfo &baseInfo);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Outpost2DLL.h>	// Main Outpost 2 header to interface with the game
+#include <Outpost2DLL/Outpost2DLL.h>	// Main Outpost 2 header to interface with the game
 
 // Include other helper header files
 #include "EnumTechID.h"
@@ -42,4 +42,23 @@ void CreateNoCommandCenterFailureCondition();
 //		 to vary each time the level is played.
 // Note: See BaseBuilder.h for specifically designed functions to permute
 //		 a list of starting locations, or a list of mining beacons.
-void RandomizeList(int numItems, int list[]);
+//void RandomizeList(int numItems, int list[]);
+
+// Note: Uses TethysGame::GetRand();
+template <class ListItemType>
+void RandomizeList(int numItems, ListItemType list[])
+{
+	int next;
+	ListItemType temp;
+
+	// Randomly reorder the list (backwards)
+	for (numItems--; numItems; numItems--)
+	{
+		// Determine which of the remaining locations to place next in the list
+		next = TethysGame::GetRand(numItems+1);
+		// Swap current item with next item
+		temp = list[numItems];
+		list[numItems] = list[next];
+		list[next] = temp;
+	}
+}

@@ -98,26 +98,3 @@ void CreateNoCommandCenterFailureCondition()
 	trig = CreateOperationalTrigger(1, 1, 0, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
 	CreateFailureCondition(1, 1, trig, "");
 }
-
-
-
-// Note: Uses TethysGame::GetRand();
-void RandomizeList(int numItems, int list[])
-{
-	int i;
-	int next;
-	int temp;
-
-	// Randomly reorder the list (backwards)
-	for (i = numItems-1; i; i--)
-	{
-		// Determine which item to place next in list
-		next = TethysGame::GetRand(i+1);
-		// Swap the 'next' item into place
-		temp = list[i];
-		list[i] = list[next];
-		list[next] = temp;
-	}
-}
-
-
