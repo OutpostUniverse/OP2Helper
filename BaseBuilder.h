@@ -92,5 +92,6 @@ struct StartLocation
 #define RandomizeStartingLocations RandomizeList
 
 // Base/Resource Placement
-void CreateBase(int player, int x, int y, BaseInfo &baseInfo);
-void CreateBeacons(int numBeacons, struct BeaconInfo beacon[]);
+void CreateBase(int player, const StartLocation& startLocation);
+void CreateBase(int player, int x, int y, const BaseInfo &baseInfo);
+void CreateBeacons(int numBeacons, const BeaconInfo beacon[]);

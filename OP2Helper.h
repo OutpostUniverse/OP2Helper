@@ -1,11 +1,15 @@
 #pragma once
 
+// Reference OP2Helper static library
+#pragma comment(lib, "../../API/OP2Helper/Lib/OP2Helper")
+
 #include <Outpost2DLL/Outpost2DLL.h>	// Main Outpost 2 header to interface with the game
 
 // Include other helper header files
 #include "EnumTechID.h"
 #include "EnumSoundID.h"
 #include "BaseBuilder.h"
+#include "BaseBuilderV2.h"
 
 // Useful macros
 #define MkXY(x,y) (LOCATION(x+31,y-1))
@@ -14,15 +18,31 @@
 #define RectPos(x1,y1,x2,y2) x1+31,y1-1,x2+31,y2-1
 
 // X and Y offset consts
-const int X_ = 31;
-const int Y_ = -1;
+const int X_ = 31;	// +32-1
+const int Y_ = -1;	// -1
+
+struct Resources
+{
+	int workers;
+	int scientists;
+	int kids;
+	int food;
+	int commonOre;
+	int rareOre;
+};
+struct ResourceSet
+{
+	Resources level[3];		// Easy, Medium, Hard
+};
+extern const ResourceSet CES1ResourceSet;
+
 
 // *************************************************
 // Note: The following are general purpose functions
 //		 to help you implement your map.
 
 // Starting Resources
-void InitPlayerResources(int playerNum);
+void InitPlayerResources(int playerNum, const ResourceSet& resourceSet = CES1ResourceSet);
 
 // Constructing Tubes/Walls
 void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type);
@@ -37,13 +57,9 @@ void CreateNoCommandCenterFailureCondition();
 // Note: This function creates a random permutation of a given list.
 //		 All permutations are equally likely to be generated.
 // Note: Using these functions requires having a preset list of possible
-//		 locations (or values). This allows more control than having things
+//		 values or locations. This allows more control than having things
 //		 spread all over the map completely random but still allows things
 //		 to vary each time the level is played.
-// Note: See BaseBuilder.h for specifically designed functions to permute
-//		 a list of starting locations, or a list of mining beacons.
-//void RandomizeList(int numItems, int list[]);
-
 // Note: Uses TethysGame::GetRand();
 template <class ListItemType>
 void RandomizeList(int numItems, ListItemType list[])
