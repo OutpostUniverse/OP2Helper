@@ -86,3 +86,17 @@ void CreateBeacons(int numBeacons, const BeaconInfo beacon[])
 	}
 }
 
+void CreateInitialCombatUnits(int playerNum, int x, int y)
+{
+	Unit unit;
+	int numUnits = TethysGame::InitialUnits();		// Number of combat units to start with
+	map_id weaponType = (Player[playerNum].IsEden() == 0) ? mapMicrowave : mapLaser;	// Set weapon based on colony type
+
+	for (; numUnits > 0; --numUnits)
+	{
+		// Create the unit
+		TethysGame::CreateUnit(unit, mapLynx, LOCATION(x, y), playerNum, weaponType, 0);
+		// Turn on it's lights
+		unit.DoSetLights(true);
+	}
+}

@@ -95,3 +95,4 @@ struct StartLocation
 void CreateBase(int player, const StartLocation& startLocation);
 void CreateBase(int player, int x, int y, const BaseInfo &baseInfo);
 void CreateBeacons(int numBeacons, const BeaconInfo beacon[]);
+void CreateInitialCombatUnits(int playerNum, int x, int y);
