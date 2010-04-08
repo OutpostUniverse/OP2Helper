@@ -83,6 +83,10 @@ SOURCE=.\EnumTechID.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Lava.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\OP2Helper.h
 # End Source File
 # End Group

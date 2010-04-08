@@ -10,6 +10,7 @@
 #include "EnumSoundID.h"
 #include "BaseBuilder.h"
 #include "BaseBuilderV2.h"
+#include "Lava.h"
 
 // Useful macros
 #define MkXY(x,y) (LOCATION(x+31,y-1))
