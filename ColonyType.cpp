@@ -53,3 +53,15 @@ bool IsCommonWeapon(map_id weaponType)
 
 	return false;	// Nope
 }
+
+// Returns true if Eden can build this weapon
+bool IsEdenWeapon(map_id weaponType)
+{
+	return (IsCommonWeapon(weaponType) || IsEdenOnlyWeapon(weaponType));
+}
+
+// Returns true if Plymouth can build this weapon
+bool IsPlymouthWeapon(map_id weaponType)
+{
+	return (IsCommonWeapon(weaponType) || IsPlymouthOnlyWeapon(weaponType));
+}

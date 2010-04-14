@@ -8,3 +8,6 @@ enum map_id;
 bool IsEdenOnlyWeapon(map_id weaponType);
 bool IsPlymouthOnlyWeapon(map_id weaponType);
 bool IsCommonWeapon(map_id weaponType);
+
+bool IsEdenWeapon(map_id weaponType);
+bool IsPlymouthWeapon(map_id weaponType);
