@@ -59,6 +59,10 @@ SOURCE=.\BaseBuilder.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ColonyType.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\OP2Helper.cpp
 # End Source File
 # End Group
@@ -72,6 +76,10 @@ SOURCE=.\BaseBuilder.h
 # Begin Source File
 
 SOURCE=.\BaseBuilderV2.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ColonyType.h
 # End Source File
 # Begin Source File
 

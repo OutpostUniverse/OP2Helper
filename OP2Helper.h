@@ -10,6 +10,7 @@
 #include "EnumSoundID.h"
 #include "BaseBuilder.h"
 #include "BaseBuilderV2.h"
+#include "ColonyType.h"
 #include "Lava.h"
 
 // Useful macros
