@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OP2Helper", "OP2Helper.vcxproj", "{0B520C87-4CFD-4A4D-ABD4-F87D26DF9AAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		ReleaseMinSize|Win32 = ReleaseMinSize|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B520C87-4CFD-4A4D-ABD4-F87D26DF9AAD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0B520C87-4CFD-4A4D-ABD4-F87D26DF9AAD}.Debug|Win32.Build.0 = Debug|Win32
+		{0B520C87-4CFD-4A4D-ABD4-F87D26DF9AAD}.Release|Win32.ActiveCfg = Release|Win32
+		{0B520C87-4CFD-4A4D-ABD4-F87D26DF9AAD}.Release|Win32.Build.0 = Release|Win32
+		{0B520C87-4CFD-4A4D-ABD4-F87D26DF9AAD}.ReleaseMinSize|Win32.ActiveCfg = ReleaseMinSize|Win32
+		{0B520C87-4CFD-4A4D-ABD4-F87D26DF9AAD}.ReleaseMinSize|Win32.Build.0 = ReleaseMinSize|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
