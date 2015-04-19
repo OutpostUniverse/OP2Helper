@@ -1,7 +1,8 @@
 #pragma once
 
 
-//#include <Outpost2DLL/Outpost2DLL.h>	// Main Outpost 2 header to interface with the game
+// Details of map_id enum are not needed here so just forward declare it
+// This way we don't need to include Outpost2DLL.h (which speeds up the compile)
 enum map_id;
 
 
