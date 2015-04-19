@@ -1,6 +1,6 @@
 
 
-#include "../Outpost2DLL/Outpost2DLL.h"	// Main Outpost 2 header to interface with the game
+#include <Outpost2DLL/Outpost2DLL.h>	// Main Outpost 2 header to interface with the game
 
 
 // Returns true if and only if the weapon if Eden specific
