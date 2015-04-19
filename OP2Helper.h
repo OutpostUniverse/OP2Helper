@@ -1,8 +1,5 @@
 #pragma once
 
-// Reference OP2Helper static library
-#pragma comment(lib, "../../API/OP2Helper/Lib/OP2Helper")
-
 #include "../Outpost2DLL/Outpost2DLL.h"	// Main Outpost 2 header to interface with the game
 
 // Include other helper header files
