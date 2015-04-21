@@ -92,9 +92,9 @@ void CreateLastOneStandingVictoryCondition()
 }
 
 
-// (Player 0) fails if the number of active Command Centers becomes equal to 0.
-void CreateNoCommandCenterFailureCondition()
+// Fail if the number of active Command Centers becomes equal to 0.
+void CreateNoCommandCenterFailureCondition(int playerNum)
 {
-	Trigger& trig = CreateOperationalTrigger(1, 1, 0, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
+	Trigger& trig = CreateOperationalTrigger(1, 1, playerNum, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
 	CreateFailureCondition(1, 1, trig, "");
 }

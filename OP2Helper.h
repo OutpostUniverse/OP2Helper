@@ -49,7 +49,7 @@ void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type);
 // Victory Conditions
 void CreateStarshipVictoryCondition();
 void CreateLastOneStandingVictoryCondition();
-void CreateNoCommandCenterFailureCondition();
+void CreateNoCommandCenterFailureCondition(int playerNum = 0);
 
 
 // Randomizing Lists
