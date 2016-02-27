@@ -35,6 +35,12 @@ struct ResourceSet
 };
 extern const ResourceSet CES1ResourceSet;
 
+/* Global Operator Functions for structure LOCATION.
+ * Allows LOCATION(10, 10) + LOCATION(5, 0) or LOCATION(10, 10) - LOCATION(5, 0)
+ */
+LOCATION operator+ (const LOCATION &loc1, const LOCATION &loc2);
+LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2);
+
 
 // *************************************************
 // Note: The following are general purpose functions
