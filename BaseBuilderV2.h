@@ -272,4 +272,4 @@ private:
 };
 
 
-#endif	// End Refefinition error protection
+#endif	// End redefinition error protection
