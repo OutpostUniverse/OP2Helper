@@ -112,12 +112,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseBuilder.cpp" />
+    <ClCompile Include="Bulldozer.cpp" />
     <ClCompile Include="ColonyType.cpp" />
     <ClCompile Include="OP2Helper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseBuilder.h" />
     <ClInclude Include="BaseBuilderV2.h" />
+    <ClInclude Include="Bulldozer.h" />
     <ClInclude Include="ColonyType.h" />
     <ClInclude Include="EnumSoundID.h" />
     <ClInclude Include="EnumTechID.h" />
