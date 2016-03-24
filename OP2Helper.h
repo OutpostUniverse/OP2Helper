@@ -9,6 +9,7 @@
 #include "BaseBuilderV2.h"
 #include "ColonyType.h"
 #include "Lava.h"
+#include "Bulldozer.h"
 
 // Useful macros
 #define MkXY(x,y) (LOCATION(x+31,y-1))
