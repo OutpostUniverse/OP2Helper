@@ -1,10 +1,9 @@
 #include "ColonyType.h"
-//#include <Outpost2DLL/Outpost2DLL.h>	// Main Outpost 2 header to interface with the game
 
-// Returns true only if the weapon is Eden specific
+// The following functions use switch case fallthrough (no break statement).
+
 bool IsEdenOnlyWeapon(map_id weaponType)
 {
-	// Use switch case fallthrough (no break statement)
 	switch(weaponType)
 	{
 	case mapLaser:
@@ -17,10 +16,8 @@ bool IsEdenOnlyWeapon(map_id weaponType)
 	return false;
 }
 
-// Returns true only if the weapon is Plymouth specific
 bool IsPlymouthOnlyWeapon(map_id weaponType)
 {
-	// Use switch case fallthrough (no break statement)
 	switch(weaponType)
 	{
 	case mapMicrowave:
@@ -36,10 +33,8 @@ bool IsPlymouthOnlyWeapon(map_id weaponType)
 	return false;
 }
 
-// Returns true if weapon can be built by both colonies
 bool IsCommonWeapon(map_id weaponType)
 {
-	// Use switch case fallthrough (no break statement)
 	switch(weaponType)
 	{
 	case mapEMP:
@@ -52,90 +47,113 @@ bool IsCommonWeapon(map_id weaponType)
 	return false;
 }
 
-// Returns true if Eden can build the weapon
 bool IsEdenWeapon(map_id weaponType)
 {
 	return (IsCommonWeapon(weaponType) || IsEdenOnlyWeapon(weaponType));
 }
 
-// Returns true if Plymouth can build the weapon
 bool IsPlymouthWeapon(map_id weaponType)
 {
 	return (IsCommonWeapon(weaponType) || IsPlymouthOnlyWeapon(weaponType));
 }
 
-// Returns true if the map_id is a building.
-bool IsBuilding(map_id mapType)
+bool IsEdenOnlyBuilding(map_id buildingType)
 {
-	return std::find(BuildingTypes.begin(), BuildingTypes.end(), mapType) != BuildingTypes.end();
+	switch (buildingType)
+	{
+	case mapMagmaWell:
+	case mapMeteorDefense:
+	case mapGeothermalPlant:
+	case mapConsumerFactory:
+	case mapObservatory:
+	case mapAdvancedResidence:
+		return true;
+	}
+
+	return false;
 }
 
-// Returns true if the building is a vehicle.
-bool IsVehicle(map_id mapType)
+bool IsPlymouthOnlyBuilding(map_id buildingType)
 {
-	return std::find(VehicleTypes.begin(), VehicleTypes.end(), mapType) != VehicleTypes.end();
+	switch (buildingType)
+	{
+	case mapForum:
+	case mapMHDGenerator:
+	case mapArachnidFactory:
+	case mapReinforcedResidence:
+		return true;
+	}
+
+	return false;
 }
 
-// Returns true if the map_id is either a vehicle or a building.
-bool IsUnit(map_id mapType)
+bool IsEdenBuilding(map_id buildingType)
 {
-	return IsBuilding(mapType) || IsVehicle(mapType);
+	return IsBuilding(buildingType) && !IsPlymouthOnlyBuilding(buildingType);
 }
 
-std::array<map_id, 38> BuildingTypes{
-	mapCommonOreMine,
-	mapRareOreMine,
-	mapGuardPost,
-	mapLightTower,
-	mapCommonStorage,
-	mapRareStorage,
-	mapForum,
-	mapCommandCenter,
-	mapMHDGenerator,
-	mapResidence,
-	mapRobotCommand,
-	mapTradeCenter,
-	mapBasicLab,
-	mapMedicalCenter,
-	mapNursery, mapSolarPowerArray,
-	mapRecreationFacility,
-	mapUniversity,
-	mapAgridome,
-	mapDIRT,
-	mapGarage,
-	mapMagmaWell,
-	mapMeteorDefense,
-	mapGeothermalPlant,
-	mapArachnidFactory,
-	mapConsumerFactory,
-	mapStructureFactory,
-	mapVehicleFactory,
-	mapStandardLab,
-	mapAdvancedLab,
-	mapObservatory,
-	mapReinforcedResidence,
-	mapAdvancedResidence,
-	mapCommonOreSmelter,
-	mapSpaceport,
-	mapRareOreSmelter,
-	mapGORF,
-	mapTokamak
-};
+bool IsPlymouthBuilding(map_id buildingType)
+{
+	return IsBuilding(buildingType) && !IsEdenOnlyBuilding(buildingType);
+}
 
-std::array<map_id, 15> VehicleTypes{
-	mapCargoTruck,
-	mapConVec,
-	mapSpider,
-	mapScorpion,
-	mapLynx,
-	mapPanther,
-	mapTiger,
-	mapRoboSurveyor,
-	mapRoboMiner,
-	mapGeoCon,
-	mapScout,
-	mapRoboDozer,
-	mapEvacuationTransport,
-	mapRepairVehicle,
-	mapEarthworker
-};
+bool IsCommonBuilding(map_id buildingType)
+{
+	return IsBuilding(buildingType) && !IsEdenOnlyBuilding(buildingType) && !IsPlymouthOnlyBuilding(buildingType);
+}
+
+bool IsEdenOnlyVehicle(map_id vehicleType)
+{
+	switch (vehicleType)
+	{
+	case mapGeoCon:
+	case mapRepairVehicle:
+		return true;
+	}
+
+	return false;
+}
+
+bool IsPlymouthOnlyVehicle(map_id vehicleType)
+{
+	switch (vehicleType)
+	{
+	case mapSpider:
+	case mapScorpion:
+		return true;
+	}
+
+	return false;
+}
+
+bool IsEdenVehicle(map_id vehicleType)
+{
+	return IsVehicle(vehicleType) && !IsPlymouthOnlyVehicle(vehicleType);
+}
+
+bool IsPlymouthVehicle(map_id vehicleType)
+{
+	return IsVehicle(vehicleType) && !IsEdenOnlyVehicle(vehicleType);
+}
+
+bool IsCommonVehicle(map_id vehicleType)
+{
+	return IsVehicle(vehicleType) && !IsEdenOnlyVehicle(vehicleType) && !IsPlymouthOnlyVehicle(vehicleType);
+}
+
+bool IsBuilding(map_id buildingType)
+{
+	// mapCommonOreMine and mapTokamak are respectively the first and last building indices
+	return ((buildingType >= map_id::mapCommonOreMine && buildingType <= map_id::mapTokamak));
+}
+
+bool IsVehicle(map_id vehicleType)
+{
+	// mapCargoTruck and mapEarthworker are respectively the first and last building indices
+	return ((vehicleType >= map_id::mapCargoTruck) && (vehicleType <= map_id::mapEarthworker));
+}
+
+bool IsUnit(map_id unitType)
+{
+	return IsBuilding(unitType) || IsVehicle(unitType);
+}
