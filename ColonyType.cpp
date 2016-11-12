@@ -57,6 +57,11 @@ bool IsPlymouthWeapon(map_id weaponType)
 	return (IsCommonWeapon(weaponType) || IsPlymouthOnlyWeapon(weaponType));
 }
 
+bool IsWeapon(map_id mapID)
+{
+	return (IsCommonWeapon(mapID) || IsPlymouthOnlyWeapon(mapID) || IsEdenOnlyWeapon(mapID));
+}
+
 bool IsEdenOnlyBuilding(map_id buildingType)
 {
 	switch (buildingType)

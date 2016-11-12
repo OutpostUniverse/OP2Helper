@@ -17,6 +17,9 @@ bool IsEdenWeapon(map_id weaponType);
 // Returns true if the map_id is a weapon that can be built by Plymouth
 bool IsPlymouthWeapon(map_id weaponType);
 
+// Returns true if the map_id is a weapon
+bool IsWeapon(map_id mapID);
+
 // Returns true if the map_id is a building that is native only to Eden
 bool IsEdenOnlyBuilding(map_id buildingType);
 
