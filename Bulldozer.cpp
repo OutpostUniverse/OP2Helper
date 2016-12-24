@@ -1,5 +1,4 @@
 #include "Bulldozer.h"
-#include <iterator>
 
 namespace Bulldozer
 {
