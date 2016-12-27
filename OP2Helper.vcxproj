@@ -122,6 +122,7 @@
     <ClCompile Include="Bulldozer.cpp" />
     <ClCompile Include="ColonyType.cpp" />
     <ClCompile Include="OP2Helper.cpp" />
+    <ClCompile Include="Lava.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseBuilder.h" />

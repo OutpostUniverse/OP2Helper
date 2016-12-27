@@ -27,6 +27,9 @@
     <ClCompile Include="Bulldozer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lava.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseBuilder.h">
