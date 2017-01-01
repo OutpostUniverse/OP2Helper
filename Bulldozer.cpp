@@ -1,11 +1,11 @@
 #include "Bulldozer.h"
 
-const int FirstRockTileIndex = 439;
-const int FirstSandTileIndex = 1206;
+const int lastMudTileIndex = 438;
+const int lastRockTileIndex = 1205;
 
-const int DozedMudTileIndex = 414;
-const int DozedRockTileIndex = 921;
-const int DozedSandTileIndex = 1670;
+const int dozedMudTileIndex = 414;
+const int dozedRockTileIndex = 921;
+const int dozedSandTileIndex = 1670;
 
 bool IsDozeable(const LOCATION &location)
 {
@@ -20,26 +20,24 @@ bool IsDozeable(const LOCATION &location)
 		currentCellType == CellTypes::cellSlowPassible2;
 }
 
-void Doze(const LOCATION &loc)
+void Doze(const LOCATION& loc)
 {
 	if (!IsDozeable(loc))
-	{
 		return;
-	}
 
 	int originalTileIndex = GameMap::GetTile(loc);
 
-	if (originalTileIndex < FirstRockTileIndex)
+	if (originalTileIndex <= lastMudTileIndex)
 	{
-		GameMap::SetTile(loc, DozedMudTileIndex);
+		GameMap::SetTile(loc, dozedMudTileIndex);
 	}
-	else if (originalTileIndex < FirstSandTileIndex)
+	else if (originalTileIndex <= lastRockTileIndex)
 	{
-		GameMap::SetTile(loc, DozedRockTileIndex);
+		GameMap::SetTile(loc, dozedRockTileIndex);
 	}
 	else
 	{
-		GameMap::SetTile(loc, DozedSandTileIndex);
+		GameMap::SetTile(loc, dozedSandTileIndex);
 	}
 
 	GameMap::SetCellType(loc, CellTypes::cellDozedArea);
