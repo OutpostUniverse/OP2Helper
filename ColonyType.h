@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Outpost2DLL/Outpost2DLL.h>
+enum map_id;
 
 // Returns true if the map_id is a weapon native only to Eden
 bool IsEdenOnlyWeapon(map_id weaponType);

@@ -1,6 +1,7 @@
 #include "ColonyType.h"
+#include <Outpost2DLL/Outpost2DLL.h>
 
-// The following functions use switch case fallthrough (no break statement).
+// Several of the following functions use switch case fallthrough (no break statement).
 
 bool IsEdenOnlyWeapon(map_id weaponType)
 {
@@ -59,7 +60,8 @@ bool IsPlymouthWeapon(map_id weaponType)
 
 bool IsWeapon(map_id mapID)
 {
-	return (IsCommonWeapon(mapID) || IsPlymouthOnlyWeapon(mapID) || IsEdenOnlyWeapon(mapID));
+	// mapAcidCloud and mapEnergyCannon are respectively the first and last weapon indices
+	return (mapID >= map_id::mapAcidCloud && mapID <= map_id::mapEnergyCannon);
 }
 
 bool IsEdenOnlyBuilding(map_id buildingType)
