@@ -87,7 +87,7 @@ void CreateStarshipVictoryCondition()
 // This also creates corresponding failure conditions
 void CreateLastOneStandingVictoryCondition()
 {
-	Trigger& trig = CreateOnePlayerLeftTrigger(1, 1, "NoResponseToTrigger");
+	Trigger trig = CreateOnePlayerLeftTrigger(1, 1, "NoResponseToTrigger");
 	CreateVictoryCondition(1, 1, trig, "Eliminate your opponents.");
 }
 
@@ -95,7 +95,7 @@ void CreateLastOneStandingVictoryCondition()
 // Fail if the number of active Command Centers becomes equal to 0.
 void CreateNoCommandCenterFailureCondition(int playerNum)
 {
-	Trigger& trig = CreateOperationalTrigger(1, 1, playerNum, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
+	Trigger trig = CreateOperationalTrigger(1, 1, playerNum, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
 	CreateFailureCondition(1, 1, trig, "");
 }
 
