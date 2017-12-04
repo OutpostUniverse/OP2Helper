@@ -14,8 +14,7 @@
 #define BaseBuilderV2_H
 
 
-#include <Outpost2DLL\Outpost2Dll.h>
-
+#include <Outpost2DLL/Outpost2DLL.h>
 
 
 // -----------------------------------------

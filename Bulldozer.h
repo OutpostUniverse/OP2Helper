@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Outpost2DLL\Outpost2DLL.h"
+#include <Outpost2DLL/Outpost2DLL.h>
 
 // Checks if a LOCATION on the map can be bulldozed.
 bool IsDozeable(const LOCATION& loc);

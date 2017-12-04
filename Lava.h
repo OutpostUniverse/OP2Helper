@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Outpost2DLL\Outpost2DLL.h"
-#include "OP2Helper\OP2Helper.h"
+#include <Outpost2DLL/Outpost2DLL.h>
+#include "OP2Helper.h"
 
 // Sets all tiles in a MAP_RECT to lava-possible.
 void SetLavaPossibleRegion(const MAP_RECT& mapRect);

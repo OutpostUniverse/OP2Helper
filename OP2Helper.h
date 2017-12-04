@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Outpost2DLL/Outpost2DLL.h>	// Main Outpost 2 header to interface with the game
+// Main Outpost 2 header to interface with the game
+#include <Outpost2DLL/Outpost2DLL.h>
 
 // Include other helper header files
 #include "EnumTechID.h"
