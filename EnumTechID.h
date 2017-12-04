@@ -1,3 +1,4 @@
+#pragma once
 
 // Note: This file contains an enum for all the research techIDs
 //		 found in multitek.txt.
@@ -167,4 +168,3 @@ enum TechID
 	techMicrobeWall							= 8401,
 	techChildrensModule						= 12499,
 };
-

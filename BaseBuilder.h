@@ -1,8 +1,9 @@
+#pragma once
+
+#include "OP2Helper.h"
 
 
-
-
-// Note: The following structures are used to 
+// Note: The following structures are used to
 //		 define resource and base layouts.
 
 struct BeaconInfo
@@ -61,6 +62,20 @@ struct StartLocation
 };
 
 
+// Used to make autosizing the arrays easier
+#define NumberOf(array) (sizeof(array)/sizeof(array[0]))
+// Used to make specifying the size of the array and the array easier
+#define AutoSize(array) NumberOf(array), array
+// Used to quickly fill BaseInfo structs
+#define MakeBaseInfo(beacons, buildings, tubes, walls, vehicles) \
+	{ AutoSize(beacons), AutoSize(buildings), AutoSize(tubes), AutoSize(walls), AutoSize(vehicles) }
+
+// Deprecated
+// ** Don't define these, as they'll cause redefinition errors here with old code **
+//#define numof(array) (sizeof(array)/sizeof(array[0]))
+//#define autosize(array) NumberOf(array), array
+
+
 // Note: These are very useful for randomizing player start locations and
 //		 beacon starting locations, among other things.
 // Note: If used for placing beacons, it would be wise to have a seperate
@@ -70,9 +85,14 @@ struct StartLocation
 // Note: These functions are based off of RandomizeList and is used to
 //		 generate a random permutation of the given list.
 
-void RandomizeResources(int numItems, struct BeaconInfo resources[]);
-void RandomizeStartingLocations(int numLocations, struct StartLocation location[]);
+//void RandomizeResources(int numItems, struct BeaconInfo resources[]);
+//void RandomizeStartingLocations(int numLocations, struct StartLocation location[]);
+
+#define RandomizeResources RandomizeList
+#define RandomizeStartingLocations RandomizeList
 
 // Base/Resource Placement
-void CreateBase(int player, int x, int y, BaseInfo &baseInfo);
-void CreateBeacons(int numBeacons, struct BeaconInfo beacon[]);
+void CreateBase(int player, const StartLocation& startLocation);
+void CreateBase(int player, int x, int y, const BaseInfo &baseInfo);
+void CreateBeacons(int numBeacons, const BeaconInfo beacon[]);
+void CreateInitialCombatUnits(int playerNum, int x, int y);

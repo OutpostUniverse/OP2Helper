@@ -1,43 +1,47 @@
 #include "OP2Helper.h"
 
 
-// Initializes player starting resources including:
-//  Common Ore, Food Stored, Workers, Scientists, Children
-void InitPlayerResources(int playerNum)
-{
-	_Player &player = Player[playerNum];
-
-	switch(player.Difficulty())
+// (Workers, Scientists, Kids, Food, Common Ore, [Rare Ore])  (Zero-fill to end if list is short)
+const ResourceSet CES1ResourceSet = {
 	{
-	case 0:		// Easy
-		player.SetOre(5000);
-		player.SetFoodStored(3000);
-		player.SetWorkers(28);
-		player.SetScientists(13);
-		player.SetKids(15);
-		break;
-	case 1:		// Normal
-		player.SetOre(4000);
-		player.SetFoodStored(2000);
-		player.SetWorkers(26);
-		player.SetScientists(13);
-		player.SetKids(15);
-		break;
-	case 2:		// Hard
-		player.SetOre(3000);
-		player.SetFoodStored(1000);
-		player.SetWorkers(23);
-		player.SetScientists(13);
-		player.SetKids(15);
+		{ 28, 13, 15, 3000, 5000 },		// Easy
+		{ 26, 13, 15, 2000, 4000 },		// Medium
+		{ 23, 13, 15, 1000, 3000 },		// Hard
 	}
+};
+const ResourceSet MultiResourceSet = {
+	{
+		{ 27, 18, 22, 3000, 6000 },		// Easy
+		{ 24, 15, 20, 2000, 4000 },		// Medium
+		{ 20, 12, 18, 1000, 2000 },		// Hard
+	}
+};
+
+
+// Initializes player starting resources including:
+//  Workers, Scientists, Children, Food Stored, Common Ore, Rare Ore
+void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
+{
+	// Cache a reference to the specified Player
+	_Player &player = Player[playerNum];
+	// Cache a reference to the resource settings for Player's difficulty level
+	const Resources& resources = resourceSet.level[player.Difficulty()];
+
+	// Set the player's resources
+	player.SetWorkers(resources.workers);
+	player.SetScientists(resources.scientists);
+	player.SetKids(resources.kids);
+	player.SetFoodStored(resources.food);
+	player.SetOre(resources.commonOre);
+	player.SetRareOre(resources.rareOre);
 }
 
 
 
-// Create a line of wall or tube 
+// Create a line of wall or tube
 // Draws along the horizontal first:
 //  If coordinates represent a bent wall/tube then it draws
-//  horizontal between x1 and x2 (along y1) and then 
+//  horizontal between x1 and x2 (along y1) and then
 //  vertical between y1 and y2 (along x2)
 void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 {
@@ -49,7 +53,7 @@ void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 	vert = x2;
 	horz = y1;
 
-	// Make sure (x1 < x2) and (y1 < y2)
+	// Make sure (x1 <= x2) and (y1 <= y2)
 	if (x1 > x2){ x1 ^= x2; x2 ^= x1; x1 ^= x2;	}
 	if (y1 > y2){ y1 ^= y2; y2 ^= y1; y1 ^= y2;	}
 
@@ -83,41 +87,27 @@ void CreateStarshipVictoryCondition()
 // This also creates corresponding failure conditions
 void CreateLastOneStandingVictoryCondition()
 {
-	Trigger trig;
-
-	trig = CreateOnePlayerLeftTrigger(1, 1, "NoResponseToTrigger");
+	Trigger trig = CreateOnePlayerLeftTrigger(1, 1, "NoResponseToTrigger");
 	CreateVictoryCondition(1, 1, trig, "Eliminate your opponents.");
 }
 
 
-// (Player 0) fails if the number of active Command Centers becomes equal to 0.
-void CreateNoCommandCenterFailureCondition()
+// Fail if the number of active Command Centers becomes equal to 0.
+void CreateNoCommandCenterFailureCondition(int playerNum)
 {
-	Trigger trig;
-
-	trig = CreateOperationalTrigger(1, 1, 0, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
+	Trigger trig = CreateOperationalTrigger(1, 1, playerNum, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
 	CreateFailureCondition(1, 1, trig, "");
 }
 
 
-
-// Note: Uses TethysGame::GetRand();
-void RandomizeList(int numItems, int list[])
+LOCATION operator+ (const LOCATION &loc1, const LOCATION &loc2)
 {
-	int i;
-	int next;
-	int temp;
+	return LOCATION(loc1.x + loc2.x, loc1.y + loc2.y);
+}
 
-	// Randomly reorder the list (backwards)
-	for (i = numItems-1; i; i--)
-	{
-		// Determine which item to place next in list
-		next = TethysGame::GetRand(i+1);
-		// Swap the 'next' item into place
-		temp = list[i];
-		list[i] = list[next];
-		list[next] = temp;
-	}
+LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2)
+{
+	return LOCATION(loc1.x - loc2.x, loc1.y - loc2.y);
 }
 
 

@@ -1,46 +1,20 @@
-#include <OP2Helper.h>
+#include "OP2Helper.h"
 
 
-// Note: Uses TethysGame::GetRand();
-void RandomizeResources(int numItems, struct BeaconInfo resources[])
+void CreateBase(int player, const StartLocation& startLocation)
 {
-	int i;
-	int next;
-	struct BeaconInfo temp;
-
-	// Randomly reorder the list (backwards)
-	for (i = numItems-1; i; i--)
+	// Center the player's view on the center of the base
+	Player[player].CenterViewOn(startLocation.x, startLocation.y);
+	// Make sure a base was specified
+	if (startLocation.baseInfo != 0)
 	{
-		// Determine which item to place next in list
-		next = TethysGame::GetRand(i+1);
-		// Swap the 'next' item into place
-		temp = resources[i];
-		resources[i] = resources[next];
-		resources[next] = temp;
-	}
-}
-
-// Note: Uses TethysGame::GetRand();
-void RandomizeStartingLocations(int numLocations, struct StartLocation location[])
-{
-	int i;
-	int next;
-	struct StartLocation temp;
-
-	// Randomly reorder the list (backwards)
-	for (i = numLocations-1; i; i--)
-	{
-		// Determine which of the remaining locations to place next in the list
-		next = TethysGame::GetRand(i+1);
-		// Swap with next list item
-		temp = location[i];
-		location[i] = location[next];
-		location[next] = temp;
+		// Create the player's base
+		CreateBase(player, startLocation.x, startLocation.y, *startLocation.baseInfo);
 	}
 }
 
 
-void CreateBase(int player, int x, int y, struct BaseInfo &baseInfo)
+void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 {
 	int i;
 	int curX, curY;
@@ -63,7 +37,7 @@ void CreateBase(int player, int x, int y, struct BaseInfo &baseInfo)
 		BuildingInfo &curItem = baseInfo.bldnInfo[i];
 		curX = x + curItem.x;
 		curY = y + curItem.y;
-		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY), 
+		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY),
 						player, mapNone, 0);
 	}
 
@@ -95,20 +69,34 @@ void CreateBase(int player, int x, int y, struct BaseInfo &baseInfo)
 		VehicleInfo &curItem = baseInfo.vehicleInfo[i];
 		curX = x + curItem.x;
 		curY = y + curItem.y;
-		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY), 
+		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY),
 						player, curItem.weaponCargo, curItem.dir);
-		unit.DoSetLights(1);
+		unit.DoSetLights(true);
 	}
 }
 
-void CreateBeacons(int numBeacons, struct BeaconInfo beacon[])
+void CreateBeacons(int numBeacons, const BeaconInfo beacon[])
 {
 	int i;
 
 	for (i = 0; i < numBeacons; i++)
 	{
-		TethysGame::CreateBeacon(beacon[i].type, beacon[i].x, beacon[i].y, 
+		TethysGame::CreateBeacon(beacon[i].type, beacon[i].x, beacon[i].y,
 						beacon[i].rare, beacon[i].bar, beacon[i].variant);
 	}
 }
 
+void CreateInitialCombatUnits(int playerNum, int x, int y)
+{
+	Unit unit;
+	int numUnits = TethysGame::InitialUnits();		// Number of combat units to start with
+	map_id weaponType = (Player[playerNum].IsEden() == 0) ? mapMicrowave : mapLaser;	// Set weapon based on colony type
+
+	for (; numUnits > 0; --numUnits)
+	{
+		// Create the unit
+		TethysGame::CreateUnit(unit, mapLynx, LOCATION(x, y), playerNum, weaponType, 0);
+		// Turn on it's lights
+		unit.DoSetLights(true);
+	}
+}
