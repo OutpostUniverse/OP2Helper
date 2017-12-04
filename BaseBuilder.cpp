@@ -37,7 +37,7 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 		BuildingInfo &curItem = baseInfo.bldnInfo[i];
 		curX = x + curItem.x;
 		curY = y + curItem.y;
-		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY), 
+		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY),
 						player, mapNone, 0);
 	}
 
@@ -69,7 +69,7 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 		VehicleInfo &curItem = baseInfo.vehicleInfo[i];
 		curX = x + curItem.x;
 		curY = y + curItem.y;
-		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY), 
+		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY),
 						player, curItem.weaponCargo, curItem.dir);
 		unit.DoSetLights(true);
 	}
@@ -81,7 +81,7 @@ void CreateBeacons(int numBeacons, const BeaconInfo beacon[])
 
 	for (i = 0; i < numBeacons; i++)
 	{
-		TethysGame::CreateBeacon(beacon[i].type, beacon[i].x, beacon[i].y, 
+		TethysGame::CreateBeacon(beacon[i].type, beacon[i].x, beacon[i].y,
 						beacon[i].rare, beacon[i].bar, beacon[i].variant);
 	}
 }

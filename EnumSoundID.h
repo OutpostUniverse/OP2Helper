@@ -263,4 +263,3 @@ enum SoundID
 	sndGun1			= 250,	// 0xFA
 //	sndMedexp1		= 251	// 0xFB
 };
-

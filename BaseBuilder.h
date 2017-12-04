@@ -3,7 +3,7 @@
 #include "OP2Helper.h"
 
 
-// Note: The following structures are used to 
+// Note: The following structures are used to
 //		 define resource and base layouts.
 
 struct BeaconInfo

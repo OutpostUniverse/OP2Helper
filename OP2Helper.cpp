@@ -25,7 +25,7 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 	// Cache a reference to the specified Player
 	_Player &player = Player[playerNum];
 	// Cache a reference to the resource settings for Player's difficulty level
-	const Resources& resources = resourceSet.level[player.Difficulty()];	
+	const Resources& resources = resourceSet.level[player.Difficulty()];
 
 	// Set the player's resources
 	player.SetWorkers(resources.workers);
@@ -38,10 +38,10 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 
 
 
-// Create a line of wall or tube 
+// Create a line of wall or tube
 // Draws along the horizontal first:
 //  If coordinates represent a bent wall/tube then it draws
-//  horizontal between x1 and x2 (along y1) and then 
+//  horizontal between x1 and x2 (along y1) and then
 //  vertical between y1 and y2 (along x2)
 void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 {

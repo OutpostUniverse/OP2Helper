@@ -168,4 +168,3 @@ enum TechID
 	techMicrobeWall							= 8401,
 	techChildrensModule						= 12499,
 };
-

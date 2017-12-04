@@ -2,7 +2,7 @@
 
 #include "Outpost2DLL\Outpost2DLL.h"
 
-// Checks if a LOCATION on the map can be bulldozed. 
+// Checks if a LOCATION on the map can be bulldozed.
 bool IsDozeable(const LOCATION& loc);
 
 // Dozes a LOCATION only if LOCATION is valid to doze.
