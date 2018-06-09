@@ -109,3 +109,17 @@ LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2)
 {
 	return LOCATION(loc1.x - loc2.x, loc1.y - loc2.y);
 }
+
+
+// Centers the local player's view on their CommandCenter, if they have one.
+void CenterViewOnPlayerCC() {
+	Unit commandCenter;
+	int localPlayer = TethysGame::LocalPlayer();
+	PlayerBuildingEnum commandCenterEnum(localPlayer, mapCommandCenter);
+
+	// Find first Command Center (if one exists)
+	if (commandCenterEnum.GetNext(commandCenter)) {
+		LOCATION commandCenterLoc = commandCenter.Location();
+		Player[localPlayer].CenterViewOn(commandCenterLoc.x, commandCenterLoc.y);
+	}
+}

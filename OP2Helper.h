@@ -85,3 +85,7 @@ void RandomizeList(int numItems, ListItemType list[])
 		list[next] = temp;
 	}
 }
+
+
+// Centers the local player's screen on their CC, if they have one.
+void CenterViewOnPlayerCC();
