@@ -89,3 +89,10 @@ void RandomizeList(int numItems, ListItemType list[])
 
 // Centers the local player's screen on their CC, if they have one.
 void CenterViewOnPlayerCC();
+
+// Use when passing a non-existing unit.
+const Unit NullUnit;
+
+// Set toPlayerNum = -1 to send to all players. 
+// Default sound effect is phone ringing (sending text message to other player)
+void AddMessage(const char* message, int soundIndex = SoundID::sndMessage2, int toPlayerNum = -1, Unit sourceUnit = NullUnit);
