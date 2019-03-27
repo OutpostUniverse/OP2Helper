@@ -124,7 +124,20 @@ void CenterViewOnPlayerCC() {
 	}
 }
 
-void AddMessage(const char* message, int soundIndex, int toPlayerNum, Unit sourceUnit) {
+void AddMessage(const char* message, Unit sourceUnit, int soundIndex, int toPlayerNum) {
 	// message is passed into outpost 2 as a non const argument. The value of message is not modified by Outpost 2.
 	TethysGame::AddMessage(sourceUnit, const_cast<char*>(message), toPlayerNum, soundIndex);
+}
+
+void AddMessage(const char* message, const LOCATION& location, int soundIndex, int toPlayerNum)
+{
+	int pixelX = -1;
+	int pixelY = -1;
+	if (location.x != NullLocation.x || location.y != NullLocation.y) {
+		pixelX = location.x * 32 + 16;
+		pixelY = location.y * 32 + 16;
+	}
+
+	// message is passed into outpost 2 as a non const argument. The value of message is not modified by Outpost 2.
+	TethysGame::AddMessage(pixelX, pixelY, const_cast<char*>(message), toPlayerNum, soundIndex);
 }
