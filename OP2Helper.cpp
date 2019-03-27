@@ -100,24 +100,20 @@ void CreateNoCommandCenterFailureCondition(int playerNum)
 }
 
 
-LOCATION operator+ (const LOCATION &loc1, const LOCATION &loc2)
-{
+LOCATION operator+ (const LOCATION &loc1, const LOCATION &loc2) {
 	return LOCATION(loc1.x + loc2.x, loc1.y + loc2.y);
 }
 
-LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2)
-{
+LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2) {
 	return LOCATION(loc1.x - loc2.x, loc1.y - loc2.y);
 }
 
-bool operator== (const LOCATION& loc1, const LOCATION &loc2)
-{
+bool operator== (const LOCATION& loc1, const LOCATION &loc2) {
 	return (loc1.x == loc2.x && loc1.y == loc2.y);
 }
 
-bool operator!= (const LOCATION& loc1, const LOCATION &loc2)
-{
-	return (loc1.x != loc2.x || loc1.y != loc2.y);
+bool operator!= (const LOCATION& loc1, const LOCATION &loc2) {
+	return !(loc1 == loc2);
 }
 
 // Centers the local player's view on their CommandCenter, if they have one.
