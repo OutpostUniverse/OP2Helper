@@ -42,7 +42,8 @@ extern const ResourceSet CES1ResourceSet;
  */
 LOCATION operator+ (const LOCATION &loc1, const LOCATION &loc2);
 LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2);
-
+bool operator== (const LOCATION& loc1, const LOCATION &loc2);
+bool operator!= (const LOCATION& loc1, const LOCATION &loc2);
 
 // *************************************************
 // Note: The following are general purpose functions

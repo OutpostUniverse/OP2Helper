@@ -110,6 +110,15 @@ LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2)
 	return LOCATION(loc1.x - loc2.x, loc1.y - loc2.y);
 }
 
+bool operator== (const LOCATION& loc1, const LOCATION &loc2)
+{
+	return (loc1.x == loc2.x && loc1.y == loc2.y);
+}
+
+bool operator!= (const LOCATION& loc1, const LOCATION &loc2)
+{
+	return (loc1.x != loc2.x || loc1.y != loc2.y);
+}
 
 // Centers the local player's view on their CommandCenter, if they have one.
 void CenterViewOnPlayerCC() {
@@ -133,7 +142,7 @@ void AddMessage(const char* message, const LOCATION& location, int soundIndex, i
 {
 	int pixelX = -1;
 	int pixelY = -1;
-	if (location.x != NullLocation.x || location.y != NullLocation.y) {
+	if (location == NullLocation) {
 		pixelX = location.x * 32 + 16;
 		pixelY = location.y * 32 + 16;
 	}
