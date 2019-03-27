@@ -124,7 +124,7 @@ void CenterViewOnPlayerCC() {
 	}
 }
 
-void AddMessage(const char* message, Unit sourceUnit, int soundIndex, int toPlayerNum) {
+void AddMessage(const char* message, const Unit& sourceUnit, int soundIndex, int toPlayerNum) {
 	// message is passed into outpost 2 as a non const argument. The value of message is not modified by Outpost 2.
 	TethysGame::AddMessage(sourceUnit, const_cast<char*>(message), toPlayerNum, soundIndex);
 }

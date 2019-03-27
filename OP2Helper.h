@@ -95,6 +95,6 @@ const LOCATION NullLocation(-1, -1);
 
 // To send message to all players, Set toPlayerNum to -1. 
 // Default sound effect is phone ringing (sending text message to other player)
-void AddMessage(const char* message, Unit sourceUnit, int soundIndex = SoundID::sndMessage2, int toPlayerNum = -1);
+void AddMessage(const char* message, const Unit& sourceUnit, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
 // To add a message that is location agnostic, use NullLocation (-1, -1)
-void AddMessage(const char* message, const LOCATION& location = NullLocation, int soundIndex = SoundID::sndMessage2, int toPlayerNum = -1);
+void AddMessage(const char* message, const LOCATION& location = NullLocation, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
