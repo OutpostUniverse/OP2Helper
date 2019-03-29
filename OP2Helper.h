@@ -42,7 +42,8 @@ extern const ResourceSet CES1ResourceSet;
  */
 LOCATION operator+ (const LOCATION &loc1, const LOCATION &loc2);
 LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2);
-
+bool operator== (const LOCATION& loc1, const LOCATION &loc2);
+bool operator!= (const LOCATION& loc1, const LOCATION &loc2);
 
 // *************************************************
 // Note: The following are general purpose functions
@@ -89,3 +90,11 @@ void RandomizeList(int numItems, ListItemType list[])
 
 // Centers the local player's screen on their CC, if they have one.
 void CenterViewOnPlayerCC();
+
+// To send message to all players, Set toPlayerNum to -1. 
+// Default sound effect is phone ringing (sending text message to other player)
+void AddMapMessage(const char* message, const Unit& sourceUnit, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
+void AddMapMessage(const char* message, const LOCATION& location, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
+void AddMapMessage(const char* message, int pixelX, int pixelY, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
+// Game message not tied to a map location (always full volume)
+void AddGameMessage(const char* message, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);

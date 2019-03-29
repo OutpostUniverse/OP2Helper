@@ -2,5 +2,10 @@ image: Visual Studio 2017
 configuration:
   - Release
   - Debug
+install:
+  # Depends on Outpost2DLL, but has no formal submodule dependency set
+  # Manually download Outpost2DLL to a compatible relative location
+  - cd %APPVEYOR_BUILD_FOLDER%\..
+  - git clone https://github.com/OutpostUniverse/Outpost2DLL
 build:
   project: OP2Helper.sln

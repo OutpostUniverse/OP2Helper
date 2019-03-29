@@ -100,16 +100,21 @@ void CreateNoCommandCenterFailureCondition(int playerNum)
 }
 
 
-LOCATION operator+ (const LOCATION &loc1, const LOCATION &loc2)
-{
+LOCATION operator+ (const LOCATION &loc1, const LOCATION &loc2) {
 	return LOCATION(loc1.x + loc2.x, loc1.y + loc2.y);
 }
 
-LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2)
-{
+LOCATION operator- (const LOCATION &loc1, const LOCATION &loc2) {
 	return LOCATION(loc1.x - loc2.x, loc1.y - loc2.y);
 }
 
+bool operator== (const LOCATION& loc1, const LOCATION &loc2) {
+	return (loc1.x == loc2.x && loc1.y == loc2.y);
+}
+
+bool operator!= (const LOCATION& loc1, const LOCATION &loc2) {
+	return !(loc1 == loc2);
+}
 
 // Centers the local player's view on their CommandCenter, if they have one.
 void CenterViewOnPlayerCC() {
@@ -122,4 +127,26 @@ void CenterViewOnPlayerCC() {
 		LOCATION commandCenterLoc = commandCenter.Location();
 		Player[localPlayer].CenterViewOn(commandCenterLoc.x, commandCenterLoc.y);
 	}
+}
+
+void AddMapMessage(const char* message, const Unit& sourceUnit, int soundIndex, int toPlayerNum) {
+	// Message is not modified by Outpost 2, but was not declared as const. Cast to avoid warnings/errors.
+	TethysGame::AddMessage(sourceUnit, const_cast<char*>(message), toPlayerNum, soundIndex);
+}
+
+void AddMapMessage(const char* message, const LOCATION& location, int soundIndex, int toPlayerNum)
+{
+	// Convert location from tiles to pixels
+	AddMapMessage(message, location.x * 32 + 16, location.y * 32 + 16, soundIndex, toPlayerNum);
+}
+
+void AddMapMessage(const char* message, int pixelX, int pixelY, int soundIndex, int toPlayerNum)
+{
+	// Message is not modified by Outpost 2, but was not declared as const. Cast to avoid warnings/errors.
+	TethysGame::AddMessage(pixelX, pixelY, const_cast<char*>(message), toPlayerNum, soundIndex);
+}
+
+void AddGameMessage(const char* message, int soundIndex, int toPlayerNum)
+{
+	AddMapMessage(message, -1, -1, soundIndex, toPlayerNum);
 }
