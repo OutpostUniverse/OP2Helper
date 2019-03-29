@@ -136,14 +136,8 @@ void AddMapMessage(const char* message, const Unit& sourceUnit, int soundIndex, 
 
 void AddMapMessage(const char* message, const LOCATION& location, int soundIndex, int toPlayerNum)
 {
-	int pixelX = -1;
-	int pixelY = -1;
-	if (location != LOCATION(-1,-1)) {
-		pixelX = location.x * 32 + 16;
-		pixelY = location.y * 32 + 16;
-	}
-
-	AddMapMessage(message, pixelX, pixelY, soundIndex, toPlayerNum);
+	// Convert location from tiles to pixels
+	AddMapMessage(message, location.x * 32 + 16, location.y * 32 + 16, soundIndex, toPlayerNum);
 }
 
 void AddMapMessage(const char* message, int pixelX, int pixelY, int soundIndex, int toPlayerNum)
