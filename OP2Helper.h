@@ -91,11 +91,10 @@ void RandomizeList(int numItems, ListItemType list[])
 // Centers the local player's screen on their CC, if they have one.
 void CenterViewOnPlayerCC();
 
-// Use when location does not actually exist.
-const LOCATION NullLocation(-1, -1);
-
 // To send message to all players, Set toPlayerNum to -1. 
 // Default sound effect is phone ringing (sending text message to other player)
-void AddMessage(const char* message, const Unit& sourceUnit, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
-// To add a message that is location agnostic, use NullLocation (-1, -1)
-void AddMessage(const char* message, const LOCATION& location = NullLocation, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
+void AddMapMessage(const char* message, const Unit& sourceUnit, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
+void AddMapMessage(const char* message, const LOCATION& location, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
+void AddMapMessage(const char* message, int pixelX, int pixelY, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
+// Game message not tied to a map location (always full volume)
+void AddGameMessage(const char* message, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
