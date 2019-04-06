@@ -54,15 +54,21 @@ void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 	horz = y1;
 
 	// Make sure (x1 <= x2) and (y1 <= y2)
-	if (x1 > x2){ x1 ^= x2; x2 ^= x1; x1 ^= x2;	}
-	if (y1 > y2){ y1 ^= y2; y2 ^= y1; y1 ^= y2;	}
+	if (x1 > x2) { 
+		x1 ^= x2; x2 ^= x1; x1 ^= x2;
+	}
+	if (y1 > y2) { 
+		y1 ^= y2; y2 ^= y1; y1 ^= y2;
+	}
 
 	// Create horizontal section
-	for (i = x1; i <= x2; i++)
+	for (i = x1; i <= x2; i++) {
 		TethysGame::CreateWallOrTube(i, horz, 0, type);
+	}
 	// Create vertical section
-	for (i = y1; i <= y2; i++)
+	for (i = y1; i <= y2; i++) {
 		TethysGame::CreateWallOrTube(vert, i, 0, type);
+	}
 }
 
 
