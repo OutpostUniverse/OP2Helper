@@ -45,12 +45,9 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 //  vertical between y1 and y2 (along x2)
 void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 {
-	int vert;
-	int horz;
-
 	// Determine which edges to draw along
-	vert = x2;
-	horz = y1;
+	const int vert = x2;
+	const int horz = y1;
 
 	// Make sure (x1 <= x2) and (y1 <= y2)
 	if (x1 > x2) { 

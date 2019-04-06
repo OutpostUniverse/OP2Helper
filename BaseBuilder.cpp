@@ -16,16 +16,12 @@ void CreateBase(int player, const StartLocation& startLocation)
 
 void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 {
-	int curX, curY;
-	int curX2, curY2;
-	Unit unit;
-
 	// Create the base beacon set
 	for (int i = 0; i < baseInfo.numBeacons; ++i)
 	{
 		BeaconInfo &curBeacon = baseInfo.beaconInfo[i];
-		curX = x + curBeacon.x;
-		curY = y + curBeacon.y;
+		const int curX = x + curBeacon.x;
+		const int curY = y + curBeacon.y;
 		TethysGame::CreateBeacon(curBeacon.type, curX, curY, curBeacon.rare,
 						curBeacon.bar, curBeacon.variant);
 	}
@@ -34,8 +30,9 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	for (int i = 0; i < baseInfo.numBuilding; ++i)
 	{
 		BuildingInfo &curItem = baseInfo.bldnInfo[i];
-		curX = x + curItem.x;
-		curY = y + curItem.y;
+		const int curX = x + curItem.x;
+		const int curY = y + curItem.y;
+		Unit unit;
 		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY),
 						player, mapNone, 0);
 	}
@@ -44,10 +41,10 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	for (int i = 0; i < baseInfo.numTubeLine; ++i)
 	{
 		TubeWallInfo &curItem = baseInfo.tubeInfo[i];
-		curX = x + curItem.fromX;
-		curY = y + curItem.fromY;
-		curX2 = x + curItem.toX;
-		curY2 = y + curItem.toY;
+		const int curX = x + curItem.fromX;
+		const int curY = y + curItem.fromY;
+		const int curX2 = x + curItem.toX;
+		const int curY2 = y + curItem.toY;
 		CreateTubeOrWallLine(curX, curY, curX2, curY2, mapTube);
 	}
 
@@ -55,10 +52,10 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	for (int i = 0; i < baseInfo.numWallLine; ++i)
 	{
 		TubeWallInfo &curItem = baseInfo.wallInfo[i];
-		curX = x + curItem.fromX;
-		curY = y + curItem.fromY;
-		curX2 = x + curItem.toX;
-		curY2 = y + curItem.toY;
+		const int curX = x + curItem.fromX;
+		const int curY = y + curItem.fromY;
+		const int curX2 = x + curItem.toX;
+		const int curY2 = y + curItem.toY;
 		CreateTubeOrWallLine(curX, curY, curX2, curY2, mapWall);
 	}
 
@@ -66,8 +63,9 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	for (int i = 0; i < baseInfo.numVehicle; ++i)
 	{
 		VehicleInfo &curItem = baseInfo.vehicleInfo[i];
-		curX = x + curItem.x;
-		curY = y + curItem.y;
+		const int curX = x + curItem.x;
+		const int curY = y + curItem.y;
+		Unit unit;
 		TethysGame::CreateUnit(unit, curItem.type, LOCATION(curX, curY),
 						player, curItem.weaponCargo, curItem.dir);
 		unit.DoSetLights(true);
@@ -85,13 +83,12 @@ void CreateBeacons(int numBeacons, const BeaconInfo beacon[])
 
 void CreateInitialCombatUnits(int playerNum, int x, int y)
 {
-	Unit unit;
 	int numUnits = TethysGame::InitialUnits();		// Number of combat units to start with
 	map_id weaponType = (Player[playerNum].IsEden() == 0) ? mapMicrowave : mapLaser;	// Set weapon based on colony type
 
 	for (; numUnits > 0; --numUnits)
 	{
-		// Create the unit
+		Unit unit;
 		TethysGame::CreateUnit(unit, mapLynx, LOCATION(x, y), playerNum, weaponType, 0);
 		// Turn on it's lights
 		unit.DoSetLights(true);
