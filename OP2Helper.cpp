@@ -70,17 +70,17 @@ void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 
 void CreateStarshipVictoryCondition()
 {
-	Trigger trig;
+	Trigger trigger;
 
 	// Create victory conditions for - Colony, Starship
-	trig = CreateCountTrigger(1, 1, -1, mapEvacuationModule, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
-	CreateVictoryCondition(1, 1, trig, "Evacuate 200 colonists to spacecraft");
-	trig = CreateCountTrigger(1, 1, -1, mapFoodCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
-	CreateVictoryCondition(1, 1, trig, "Evacuate 10000 units of food to spacecraft");
-	trig = CreateCountTrigger(1, 1, -1, mapCommonMetalsCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
-	CreateVictoryCondition(1, 1, trig, "Evacuate 10000 units of Commom Metals to spacecraft");
-	trig = CreateCountTrigger(1, 1, -1, mapRareMetalsCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
-	CreateVictoryCondition(1, 1, trig, "Evacuate 10000 units of Rare Metals to spacecraft");
+	trigger = CreateCountTrigger(1, 1, -1, mapEvacuationModule, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
+	CreateVictoryCondition(1, 1, trigger, "Evacuate 200 colonists to spacecraft");
+	trigger = CreateCountTrigger(1, 1, -1, mapFoodCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
+	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of food to spacecraft");
+	trigger = CreateCountTrigger(1, 1, -1, mapCommonMetalsCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
+	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of Commom Metals to spacecraft");
+	trigger = CreateCountTrigger(1, 1, -1, mapRareMetalsCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
+	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of Rare Metals to spacecraft");
 }
 
 
@@ -89,16 +89,16 @@ void CreateStarshipVictoryCondition()
 // This also creates corresponding failure conditions
 void CreateLastOneStandingVictoryCondition()
 {
-	Trigger trig = CreateOnePlayerLeftTrigger(1, 1, "NoResponseToTrigger");
-	CreateVictoryCondition(1, 1, trig, "Eliminate your opponents.");
+	Trigger trigger = CreateOnePlayerLeftTrigger(1, 1, "NoResponseToTrigger");
+	CreateVictoryCondition(1, 1, trigger, "Eliminate your opponents.");
 }
 
 
 // Fail if the number of active Command Centers becomes equal to 0.
 void CreateNoCommandCenterFailureCondition(int playerNum)
 {
-	Trigger trig = CreateOperationalTrigger(1, 1, playerNum, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
-	CreateFailureCondition(1, 1, trig, "");
+	Trigger trigger = CreateOperationalTrigger(1, 1, playerNum, mapCommandCenter, 0, cmpEqual, "NoResponseToTrigger");
+	CreateFailureCondition(1, 1, trigger, "");
 }
 
 
