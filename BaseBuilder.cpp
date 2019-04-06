@@ -16,13 +16,12 @@ void CreateBase(int player, const StartLocation& startLocation)
 
 void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 {
-	int i;
 	int curX, curY;
 	int curX2, curY2;
 	Unit unit;
 
 	// Create the base beacon set
-	for (i = 0; i < baseInfo.numBeacons; i++)
+	for (int i = 0; i < baseInfo.numBeacons; ++i)
 	{
 		BeaconInfo &curBeacon = baseInfo.beaconInfo[i];
 		curX = x + curBeacon.x;
@@ -32,7 +31,7 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	}
 
 	// Create the buildings
-	for (i = 0; i < baseInfo.numBuilding; i++)
+	for (int i = 0; i < baseInfo.numBuilding; ++i)
 	{
 		BuildingInfo &curItem = baseInfo.bldnInfo[i];
 		curX = x + curItem.x;
@@ -42,7 +41,7 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	}
 
 	// Create the tube lines
-	for (i = 0; i < baseInfo.numTubeLine; i++)
+	for (int i = 0; i < baseInfo.numTubeLine; ++i)
 	{
 		TubeWallInfo &curItem = baseInfo.tubeInfo[i];
 		curX = x + curItem.fromX;
@@ -53,7 +52,7 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	}
 
 	// Create the wall lines
-	for (i = 0; i < baseInfo.numWallLine; i++)
+	for (int i = 0; i < baseInfo.numWallLine; ++i)
 	{
 		TubeWallInfo &curItem = baseInfo.wallInfo[i];
 		curX = x + curItem.fromX;
@@ -64,7 +63,7 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	}
 
 	// Create the vehicles
-	for (i = 0; i < baseInfo.numVehicle; i++)
+	for (int i = 0; i < baseInfo.numVehicle; ++i)
 	{
 		VehicleInfo &curItem = baseInfo.vehicleInfo[i];
 		curX = x + curItem.x;
@@ -77,9 +76,7 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 
 void CreateBeacons(int numBeacons, const BeaconInfo beacon[])
 {
-	int i;
-
-	for (i = 0; i < numBeacons; i++)
+	for (int i = 0; i < numBeacons; ++i)
 	{
 		TethysGame::CreateBeacon(beacon[i].type, beacon[i].x, beacon[i].y,
 						beacon[i].rare, beacon[i].bar, beacon[i].variant);

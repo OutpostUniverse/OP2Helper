@@ -45,7 +45,6 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 //  vertical between y1 and y2 (along x2)
 void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 {
-	int i;
 	int vert;
 	int horz;
 
@@ -62,11 +61,11 @@ void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 	}
 
 	// Create horizontal section
-	for (i = x1; i <= x2; i++) {
+	for (int i = x1; i <= x2; ++i) {
 		TethysGame::CreateWallOrTube(i, horz, 0, type);
 	}
 	// Create vertical section
-	for (i = y1; i <= y2; i++) {
+	for (int i = y1; i <= y2; ++i) {
 		TethysGame::CreateWallOrTube(vert, i, 0, type);
 	}
 }
