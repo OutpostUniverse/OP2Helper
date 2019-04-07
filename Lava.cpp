@@ -13,15 +13,12 @@ void SetLavaPossibleRegion(const MAP_RECT& mapRect)
 
 void SetLavaPossibleAllSlowCells(const MAP_RECT& mapRect)
 {
-	int cellType;
-	LOCATION location;
-
 	for (int y = mapRect.y1; y <= mapRect.y2; ++y)
 	{
 		for (int x = mapRect.x1; x <= mapRect.x2; ++x)
 		{
-			location = LOCATION(x, y);
-			cellType = GameMap::GetCellType(location);
+			const LOCATION location = LOCATION(x, y);
+			const int cellType = GameMap::GetCellType(location);
 
 			if (cellType == CellTypes::cellSlowPassible1 ||
 				cellType == CellTypes::cellSlowPassible2)
