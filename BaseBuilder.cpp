@@ -86,9 +86,9 @@ void CreateInitialCombatUnits(int playerNum, int x, int y)
 	// Set weapon based on colony type
 	const map_id weaponType = (Player[playerNum].IsEden() == 0) ? mapMicrowave : mapLaser;
 
-	Unit unit;
 	for (int i = TethysGame::InitialUnits(); i > 0; --i)
 	{
+		Unit unit;
 		TethysGame::CreateUnit(unit, mapLynx, LOCATION(x, y), playerNum, weaponType, 0);
 		unit.DoSetLights(true);
 	}
