@@ -1,4 +1,5 @@
 #include "OP2Helper.h"
+#include <utility>
 
 
 // (Workers, Scientists, Kids, Food, Common Ore, [Rare Ore])  (Zero-fill to end if list is short)
@@ -50,11 +51,11 @@ void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 	const int horz = y1;
 
 	// Make sure (x1 <= x2) and (y1 <= y2)
-	if (x1 > x2) { 
-		x1 ^= x2; x2 ^= x1; x1 ^= x2;
+	if (x1 > x2) {
+		std::swap(x1, x2);
 	}
-	if (y1 > y2) { 
-		y1 ^= y2; y2 ^= y1; y1 ^= y2;
+	if (y1 > y2) {
+		std::swap(y1, y2);
 	}
 
 	// Create horizontal section
