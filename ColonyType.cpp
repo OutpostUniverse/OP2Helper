@@ -164,3 +164,9 @@ bool IsUnit(map_id unitType)
 {
 	return IsBuilding(unitType) || IsVehicle(unitType);
 }
+
+bool IsTubeOrWall(map_id mapID)
+{
+	// mapTube and mapMicrobeWall are respectively the first and last Tube/Wall indices
+	return mapID >= map_id::mapTube && mapID <= map_id::mapMicrobeWall;
+}
