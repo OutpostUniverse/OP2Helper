@@ -59,3 +59,6 @@ bool IsVehicle(map_id mapID);
 
 // Returns true if the map_id is either a vehicle or a building
 bool IsUnit(map_id mapID);
+
+// Returns true if the map_id is any form of tube or wall
+bool IsTubeOrWall(map_id mapID);
