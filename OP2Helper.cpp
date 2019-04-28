@@ -19,6 +19,11 @@ const ResourceSet MultiResourceSet = {
 };
 
 
+// Assuming loc1 and loc2 form a rectangle:
+//  Set loc1 to the top left
+//  Set loc2 to the bottom right
+void SwapLocations(LOCATION& loc1, LOCATION& loc2);
+
 // Initializes player starting resources including:
 //  Workers, Scientists, Children, Food Stored, Common Ore, Rare Ore
 void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
@@ -68,6 +73,17 @@ void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
 	}
 }
 
+
+void SwapLocations(LOCATION& loc1, LOCATION& loc2)
+{
+	// Make sure (x1 <= x2) and (y1 <= y2)
+	if (loc1.x > loc2.x) {
+		std::swap(loc1.x, loc2.x);
+	}
+	if (loc1.y > loc2.y) {
+		std::swap(loc1.y, loc2.y);
+	}
+}
 
 void CreateStarshipVictoryCondition()
 {
