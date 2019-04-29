@@ -41,22 +41,18 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	for (int i = 0; i < baseInfo.numTubeLine; ++i)
 	{
 		TubeWallInfo &curItem = baseInfo.tubeInfo[i];
-		const int curX = x + curItem.fromX;
-		const int curY = y + curItem.fromY;
-		const int curX2 = x + curItem.toX;
-		const int curY2 = y + curItem.toY;
-		CreateTubeOrWallLine(curX, curY, curX2, curY2, mapTube);
+		CreateTubeLine(
+			LOCATION(x + curItem.fromX, y + curItem.fromY), 
+			LOCATION(x + curItem.toX, y + curItem.toY));
 	}
 
 	// Create the wall lines
 	for (int i = 0; i < baseInfo.numWallLine; ++i)
 	{
 		TubeWallInfo &curItem = baseInfo.wallInfo[i];
-		const int curX = x + curItem.fromX;
-		const int curY = y + curItem.fromY;
-		const int curX2 = x + curItem.toX;
-		const int curY2 = y + curItem.toY;
-		CreateTubeOrWallLine(curX, curY, curX2, curY2, mapWall);
+		CreateWallLine(
+			LOCATION(x + curItem.fromX, y + curItem.fromY),
+			LOCATION(x + curItem.toX, y + curItem.toY));
 	}
 
 	// Create the vehicles
