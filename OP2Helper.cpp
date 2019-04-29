@@ -46,6 +46,16 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 
 
 
+void CreateTubeLine(LOCATION loc1, LOCATION loc2)
+{
+	CreateTubeOrWallLine(loc1, loc2, map_id::mapTube);
+}
+
+void CreateWallLine(LOCATION loc1, LOCATION loc2, map_id wallType)
+{
+	CreateTubeOrWallLine(loc1, loc2, wallType);
+}
+
 // Create a line of wall or tube
 // Draws along the horizontal first:
 //  If coordinates represent a bent wall/tube then it draws

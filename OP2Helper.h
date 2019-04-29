@@ -52,6 +52,16 @@ bool operator!= (const LOCATION& loc1, const LOCATION &loc2);
 // Starting Resources
 void InitPlayerResources(int playerNum, const ResourceSet& resourceSet = CES1ResourceSet);
 
+
+// Creates tubes in a straight line or L pattern
+// L patterns draw counter - clockwise between the two points
+void CreateTubeLine(LOCATION loc1, LOCATION loc2);
+
+// Creates walls in a straight line or L pattern
+// L patterns draw counter - clockwise between the two points
+void CreateWallLine(LOCATION loc1, LOCATION loc2, map_id wallType = map_id::mapWall);
+
+
 // Victory Conditions
 void CreateStarshipVictoryCondition();
 void CreateLastOneStandingVictoryCondition();
