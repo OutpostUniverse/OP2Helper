@@ -19,6 +19,8 @@ const ResourceSet MultiResourceSet = {
 };
 
 
+void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type);
+
 // Assuming loc1 and loc2 form a rectangle:
 //  Set loc1 to the top left
 //  Set loc2 to the bottom right

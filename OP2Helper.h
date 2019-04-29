@@ -52,9 +52,6 @@ bool operator!= (const LOCATION& loc1, const LOCATION &loc2);
 // Starting Resources
 void InitPlayerResources(int playerNum, const ResourceSet& resourceSet = CES1ResourceSet);
 
-// Constructing Tubes/Walls
-void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type);
-
 // Victory Conditions
 void CreateStarshipVictoryCondition();
 void CreateLastOneStandingVictoryCondition();
