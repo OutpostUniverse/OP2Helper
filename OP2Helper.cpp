@@ -78,6 +78,39 @@ void CreateTubeOrWallLine(LOCATION loc1, LOCATION loc2, map_id type)
 	}
 }
 
+void RecordTubeLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2)
+{
+	// Determine edges to record along
+	const int vertEdge = loc2.x;
+	const int horizEdge = loc1.y;
+	SwapLocations(loc1, loc2);
+
+	// Record horizontal section
+	for (int x = loc1.x; x <= loc2.x; ++x) {
+		buildingGroup.RecordTube(LOCATION(x, horizEdge));
+	}
+	// Record vertical section
+	for (int y = loc1.y; y <= loc2.y; ++y) {
+		buildingGroup.RecordTube(LOCATION(vertEdge, y));
+	}
+}
+
+void RecordWallLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2, map_id wallType)
+{
+	// Determine edges to record along
+	const int vertEdge = loc2.x;
+	const int horizEdge = loc1.y;
+	SwapLocations(loc1, loc2);
+
+	// Record horizontal section
+	for (int x = loc1.x; x <= loc2.x; ++x) {
+		buildingGroup.RecordWall(LOCATION(x, horizEdge), wallType);
+	}
+	// Record vertical section
+	for (int y = loc1.y; y <= loc2.y; ++y) {
+		buildingGroup.RecordWall(LOCATION(vertEdge, y), wallType);
+	}
+}
 
 void SwapLocations(LOCATION& loc1, LOCATION& loc2)
 {
@@ -89,6 +122,7 @@ void SwapLocations(LOCATION& loc1, LOCATION& loc2)
 		std::swap(loc1.y, loc2.y);
 	}
 }
+
 
 void CreateStarshipVictoryCondition()
 {

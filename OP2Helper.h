@@ -61,6 +61,14 @@ void CreateTubeLine(LOCATION loc1, LOCATION loc2);
 // L patterns draw counter - clockwise between the two points
 void CreateWallLine(LOCATION loc1, LOCATION loc2, map_id wallType = map_id::mapWall);
 
+// Record line of tubes to a BuildingGroup in a straight line or L pattern
+// L patterns draw counter - clockwise between the two points
+void RecordTubeLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2);
+
+// Record line of walls to a BuildingGroup in a straight line or L pattern
+// L patterns draw counter - clockwise between the two points
+void RecordWallLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2, map_id wallType = map_id::mapWall);
+
 
 // Victory Conditions
 void CreateStarshipVictoryCondition();
