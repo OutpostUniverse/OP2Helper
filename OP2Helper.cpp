@@ -19,7 +19,7 @@ const ResourceSet MultiResourceSet = {
 };
 
 
-void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type);
+void CreateTubeOrWallLine(LOCATION loc1, LOCATION loc2, map_id type);
 
 // Assuming loc1 and loc2 form a rectangle:
 //  Set loc1 to the top left
@@ -51,27 +51,20 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 //  If coordinates represent a bent wall/tube then it draws
 //  horizontal between x1 and x2 (along y1) and then
 //  vertical between y1 and y2 (along x2)
-void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
+void CreateTubeOrWallLine(LOCATION loc1, LOCATION loc2, map_id type)
 {
-	// Determine which edges to draw along
-	const int vert = x2;
-	const int horz = y1;
-
-	// Make sure (x1 <= x2) and (y1 <= y2)
-	if (x1 > x2) {
-		std::swap(x1, x2);
-	}
-	if (y1 > y2) {
-		std::swap(y1, y2);
-	}
+	// Determine edges to draw along
+	const int vertEdge = loc2.x;
+	const int horizEdge = loc1.y;
+	SwapLocations(loc1, loc2);
 
 	// Create horizontal section
-	for (int i = x1; i <= x2; ++i) {
-		TethysGame::CreateWallOrTube(i, horz, 0, type);
+	for (int x = loc1.x; x <= loc2.x; ++x) {
+		TethysGame::CreateWallOrTube(x, horizEdge, 0, type);
 	}
 	// Create vertical section
-	for (int i = y1; i <= y2; ++i) {
-		TethysGame::CreateWallOrTube(vert, i, 0, type);
+	for (int y = loc1.y; y <= loc2.y; ++y) {
+		TethysGame::CreateWallOrTube(vertEdge, y, 0, type);
 	}
 }
 
