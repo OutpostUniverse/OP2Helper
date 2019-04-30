@@ -1,5 +1,6 @@
 #include "OP2Helper.h"
 #include <utility>
+#include <functional>
 
 
 // (Workers, Scientists, Kids, Food, Common Ore, [Rare Ore])  (Zero-fill to end if list is short)
@@ -18,8 +19,8 @@ const ResourceSet MultiResourceSet = {
 	}
 };
 
-
-void CreateTubeOrWallLine(LOCATION loc1, LOCATION loc2, map_id type);
+// Perform recordFunction discretely along a line or L shape
+void ExecuteAcrossLine(LOCATION loc1, LOCATION loc2, const std::function <void(LOCATION&)>& recordFunction);
 
 // Assuming loc1 and loc2 form a rectangle:
 //  Set loc1 to the top left
@@ -45,57 +46,63 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 }
 
 
-
 void CreateTubeLine(LOCATION loc1, LOCATION loc2)
 {
-	CreateTubeOrWallLine(loc1, loc2, map_id::mapTube);
+	ExecuteAcrossLine(loc1, loc2,
+		[](LOCATION& location) { TethysGame::CreateWallOrTube(location.x, location.y, 0, map_id::mapTube); }
+	);
 }
 
-void CreateWallLine(LOCATION loc1, LOCATION loc2, map_id wallType)
+void CreateWallLine(LOCATION loc1, LOCATION loc2)
 {
-	CreateTubeOrWallLine(loc1, loc2, wallType);
+	ExecuteAcrossLine(loc1, loc2,
+		[](LOCATION& location) { TethysGame::CreateWallOrTube(location.x, location.y, 0, map_id::mapWall); }
+	);
 }
 
-// Create a line of wall or tube
-// Draws along the horizontal first:
-//  If coordinates represent a bent wall/tube then it draws
-//  horizontal between x1 and x2 (along y1) and then
-//  vertical between y1 and y2 (along x2)
-void CreateTubeOrWallLine(LOCATION loc1, LOCATION loc2, map_id type)
+void CreateLavaWallLine(LOCATION loc1, LOCATION loc2)
 {
-	// Determine edges to draw along
-	const int vertEdge = loc2.x;
-	const int horizEdge = loc1.y;
-	SwapLocations(loc1, loc2);
+	ExecuteAcrossLine(loc1, loc2,
+		[](LOCATION& location) { TethysGame::CreateWallOrTube(location.x, location.y, 0, map_id::mapLavaWall); }
+	);
+}
 
-	// Create horizontal section
-	for (int x = loc1.x; x <= loc2.x; ++x) {
-		TethysGame::CreateWallOrTube(x, horizEdge, 0, type);
-	}
-	// Create vertical section
-	for (int y = loc1.y; y <= loc2.y; ++y) {
-		TethysGame::CreateWallOrTube(vertEdge, y, 0, type);
-	}
+void CreateMicrobeWallLine(LOCATION loc1, LOCATION loc2)
+{
+	ExecuteAcrossLine(loc1, loc2, 
+		[](LOCATION& location) { TethysGame::CreateWallOrTube(location.x, location.y, 0, map_id::mapMicrobeWall); }
+	);
 }
 
 void RecordTubeLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2)
 {
-	// Determine edges to record along
-	const int vertEdge = loc2.x;
-	const int horizEdge = loc1.y;
-	SwapLocations(loc1, loc2);
-
-	// Record horizontal section
-	for (int x = loc1.x; x <= loc2.x; ++x) {
-		buildingGroup.RecordTube(LOCATION(x, horizEdge));
-	}
-	// Record vertical section
-	for (int y = loc1.y; y <= loc2.y; ++y) {
-		buildingGroup.RecordTube(LOCATION(vertEdge, y));
-	}
+	ExecuteAcrossLine(loc1, loc2,
+		[ &buildingGroup ] (LOCATION& location) { buildingGroup.RecordTube(location); }
+	);
 }
 
-void RecordWallLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2, map_id wallType)
+void RecordWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2)
+{
+	ExecuteAcrossLine(loc1, loc2,
+		[ &buildingGroup ] (LOCATION& location) { buildingGroup.RecordWall(location, map_id::mapWall); }
+	);
+}
+
+void RecordLavaWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2)
+{
+	ExecuteAcrossLine(loc1, loc2,
+		[ &buildingGroup ] (LOCATION& location) { buildingGroup.RecordWall(location, map_id::mapLavaWall); }
+	);
+}
+
+void RecordMicrobeWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2)
+{
+	ExecuteAcrossLine(loc1, loc2,
+		[ &buildingGroup ] (LOCATION& location) { buildingGroup.RecordWall(location, map_id::mapMicrobeWall); }
+	);
+}
+
+void ExecuteAcrossLine(LOCATION loc1, LOCATION loc2, const std::function <void(LOCATION&)>& recordFunction)
 {
 	// Determine edges to record along
 	const int vertEdge = loc2.x;
@@ -104,11 +111,11 @@ void RecordWallLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2, 
 
 	// Record horizontal section
 	for (int x = loc1.x; x <= loc2.x; ++x) {
-		buildingGroup.RecordWall(LOCATION(x, horizEdge), wallType);
+		recordFunction(LOCATION(x, horizEdge));
 	}
 	// Record vertical section
 	for (int y = loc1.y; y <= loc2.y; ++y) {
-		buildingGroup.RecordWall(LOCATION(vertEdge, y), wallType);
+		recordFunction(LOCATION(vertEdge, y));
 	}
 }
 

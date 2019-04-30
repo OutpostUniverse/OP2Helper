@@ -53,21 +53,19 @@ bool operator!= (const LOCATION& loc1, const LOCATION &loc2);
 void InitPlayerResources(int playerNum, const ResourceSet& resourceSet = CES1ResourceSet);
 
 
-// Creates tubes in a straight line or L pattern
+// Create wall or tubes in a straight line or L pattern
 // L patterns draw counter - clockwise between the two points
 void CreateTubeLine(LOCATION loc1, LOCATION loc2);
+void CreateWallLine(LOCATION loc1, LOCATION loc2);
+void CreateLavaWallLine(LOCATION loc1, LOCATION loc2);
+void CreateMicrobeWallLine(LOCATION loc1, LOCATION loc2);
 
-// Creates walls in a straight line or L pattern
-// L patterns draw counter - clockwise between the two points
-void CreateWallLine(LOCATION loc1, LOCATION loc2, map_id wallType = map_id::mapWall);
-
-// Record line of tubes to a BuildingGroup in a straight line or L pattern
+// Record line of tubes or walls to a BuildingGroup in a straight line or L pattern
 // L patterns draw counter - clockwise between the two points
 void RecordTubeLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2);
-
-// Record line of walls to a BuildingGroup in a straight line or L pattern
-// L patterns draw counter - clockwise between the two points
-void RecordWallLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2, map_id wallType = map_id::mapWall);
+void RecordWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
+void RecordLavaWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
+void RecordMicrobeWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
 
 
 // Victory Conditions
