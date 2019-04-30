@@ -130,6 +130,37 @@ void SwapLocations(LOCATION& loc1, LOCATION& loc2)
 	}
 }
 
+// Create a line of wall or tube
+// Draws along the horizontal first:
+//  If coordinates represent a bent wall/tube then it draws
+//  horizontal between x1 and x2 (along y1) and then
+//  vertical between y1 and y2 (along x2)
+void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type)
+{
+	const LOCATION loc1(x1, y1);
+	const LOCATION loc2(x2, y2);
+
+	switch (type)
+	{
+	case mapTube: {
+		CreateTubeLine(loc1, loc2);
+		return;
+	}
+	case mapWall: {
+		CreateWallLine(loc1, loc2);
+		return;
+	}
+	case mapLavaWall: {
+		CreateLavaWallLine(loc1, loc2);
+		return;
+	}
+	case mapMicrobeWall: {
+		CreateMicrobeWallLine(loc1, loc2);
+		return;
+	}
+	}
+}
+
 
 void CreateStarshipVictoryCondition()
 {

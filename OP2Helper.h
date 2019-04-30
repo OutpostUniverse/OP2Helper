@@ -67,6 +67,9 @@ void RecordWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LO
 void RecordLavaWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
 void RecordMicrobeWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
 
+[[deprecated("CreateTubeOrWallLine is deprecated. Use CreateWallLine or CreateTubeLine instead.")]]
+void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type);
+
 
 // Victory Conditions
 void CreateStarshipVictoryCondition();
