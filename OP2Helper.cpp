@@ -19,8 +19,8 @@ const ResourceSet MultiResourceSet = {
 	}
 };
 
-// Perform recordFunction discretely along a line or L shape
-void ExecuteAcrossLine(LOCATION loc1, LOCATION loc2, const std::function <void(LOCATION&)>& recordFunction);
+// Perform function discretely along a line or L shape
+void ExecuteAcrossLine(LOCATION loc1, LOCATION loc2, const std::function <void(int x, int y)>& function);
 
 // Assuming loc1 and loc2 form a rectangle:
 //  Set loc1 to the top left
@@ -49,60 +49,60 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 void CreateTubeLine(LOCATION loc1, LOCATION loc2)
 {
 	ExecuteAcrossLine(loc1, loc2,
-		[](LOCATION& location) { TethysGame::CreateWallOrTube(location.x, location.y, 0, map_id::mapTube); }
+		[](int x, int y) { TethysGame::CreateWallOrTube(x, y, 0, map_id::mapTube); }
 	);
 }
 
 void CreateWallLine(LOCATION loc1, LOCATION loc2)
 {
 	ExecuteAcrossLine(loc1, loc2,
-		[](LOCATION& location) { TethysGame::CreateWallOrTube(location.x, location.y, 0, map_id::mapWall); }
+		[](int x, int y) { TethysGame::CreateWallOrTube(x, y, 0, map_id::mapWall); }
 	);
 }
 
 void CreateLavaWallLine(LOCATION loc1, LOCATION loc2)
 {
 	ExecuteAcrossLine(loc1, loc2,
-		[](LOCATION& location) { TethysGame::CreateWallOrTube(location.x, location.y, 0, map_id::mapLavaWall); }
+		[](int x, int y) { TethysGame::CreateWallOrTube(x, y, 0, map_id::mapLavaWall); }
 	);
 }
 
 void CreateMicrobeWallLine(LOCATION loc1, LOCATION loc2)
 {
 	ExecuteAcrossLine(loc1, loc2, 
-		[](LOCATION& location) { TethysGame::CreateWallOrTube(location.x, location.y, 0, map_id::mapMicrobeWall); }
+		[](int x, int y) { TethysGame::CreateWallOrTube(x, y, 0, map_id::mapMicrobeWall); }
 	);
 }
 
 void RecordTubeLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2)
 {
 	ExecuteAcrossLine(loc1, loc2,
-		[ &buildingGroup ] (LOCATION& location) { buildingGroup.RecordTube(location); }
+		[ &buildingGroup ] (int x, int y) { LOCATION location(x, y); buildingGroup.RecordTube(location); }
 	);
 }
 
 void RecordWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2)
 {
 	ExecuteAcrossLine(loc1, loc2,
-		[ &buildingGroup ] (LOCATION& location) { buildingGroup.RecordWall(location, map_id::mapWall); }
+		[ &buildingGroup ] (int x, int y) { LOCATION location(x, y); buildingGroup.RecordWall(location, map_id::mapWall); }
 	);
 }
 
 void RecordLavaWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2)
 {
 	ExecuteAcrossLine(loc1, loc2,
-		[ &buildingGroup ] (LOCATION& location) { buildingGroup.RecordWall(location, map_id::mapLavaWall); }
+		[ &buildingGroup ] (int x, int y) { LOCATION location(x, y); buildingGroup.RecordWall(location, map_id::mapLavaWall); }
 	);
 }
 
 void RecordMicrobeWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2)
 {
 	ExecuteAcrossLine(loc1, loc2,
-		[ &buildingGroup ] (LOCATION& location) { buildingGroup.RecordWall(location, map_id::mapMicrobeWall); }
+		[ &buildingGroup ] (int x, int y) { LOCATION location(x, y); buildingGroup.RecordWall(location, map_id::mapMicrobeWall); }
 	);
 }
 
-void ExecuteAcrossLine(LOCATION loc1, LOCATION loc2, const std::function <void(LOCATION&)>& recordFunction)
+void ExecuteAcrossLine(LOCATION loc1, LOCATION loc2, const std::function <void(int x, int y)>& function)
 {
 	// Determine edges to record along
 	const int vertEdge = loc2.x;
@@ -111,11 +111,11 @@ void ExecuteAcrossLine(LOCATION loc1, LOCATION loc2, const std::function <void(L
 
 	// Record horizontal section
 	for (int x = loc1.x; x <= loc2.x; ++x) {
-		recordFunction(LOCATION(x, horizEdge));
+		function(x, horizEdge);
 	}
 	// Record vertical section
 	for (int y = loc1.y; y <= loc2.y; ++y) {
-		recordFunction(LOCATION(vertEdge, y));
+		function(vertEdge, y);
 	}
 }
 
