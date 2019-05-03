@@ -227,7 +227,7 @@ enum SoundID
 	sndSavnt264		= 214, 	// 0xD6 "Ion drive module deployed"
 	sndSavnt265		= 215, 	// 0xD7 "Fusion drive module deployed"
 	sndSavnt266		= 216, 	// 0xD8 "Command module deployed"
-	sndSavnt267		= 217, 	// 0xD9 "Fuelling systems deployed"
+	sndSavnt267		= 217, 	// 0xD9 "Fueling systems deployed"
 	sndSavnt268		= 218, 	// 0xDA "Habitat ring deployed"
 	sndSavnt269		= 219, 	// 0xDB "Sensor package deployed"
 	sndSavnt270		= 220, 	// 0xDC "Skydock operational"
