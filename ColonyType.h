@@ -1,6 +1,7 @@
 #pragma once
 
-enum map_id;
+#include <Outpost2DLL/Outpost2DLL.h>
+
 
 // Returns true if the map_id is a weapon native only to Eden
 bool IsEdenOnlyWeapon(map_id weaponType);
@@ -58,3 +59,6 @@ bool IsVehicle(map_id mapID);
 
 // Returns true if the map_id is either a vehicle or a building
 bool IsUnit(map_id mapID);
+
+// Returns true if the map_id is any form of tube or wall
+bool IsTubeOrWall(map_id mapID);

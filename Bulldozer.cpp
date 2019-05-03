@@ -22,8 +22,9 @@ bool IsDozeable(const LOCATION &location)
 
 void Doze(const LOCATION& loc)
 {
-	if (!IsDozeable(loc))
+	if (!IsDozeable(loc)) {
 		return;
+	}
 
 	int originalTileIndex = GameMap::GetTile(loc);
 
