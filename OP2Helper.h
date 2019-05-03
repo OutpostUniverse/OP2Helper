@@ -51,8 +51,24 @@ bool operator!= (const LOCATION& loc1, const LOCATION &loc2);
 // Starting Resources
 void InitPlayerResources(int playerNum, const ResourceSet& resourceSet = CES1ResourceSet);
 
-// Constructing Tubes/Walls
+
+// Create wall or tubes in a straight line or L pattern
+// L patterns draw counter - clockwise between the two points
+void CreateTubeLine(LOCATION loc1, LOCATION loc2);
+void CreateWallLine(LOCATION loc1, LOCATION loc2);
+void CreateLavaWallLine(LOCATION loc1, LOCATION loc2);
+void CreateMicrobeWallLine(LOCATION loc1, LOCATION loc2);
+
+// Record line of tubes or walls to a BuildingGroup in a straight line or L pattern
+// L patterns draw counter - clockwise between the two points
+void RecordTubeLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2);
+void RecordWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
+void RecordLavaWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
+void RecordMicrobeWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
+
+[[deprecated("CreateTubeOrWallLine is deprecated. Use CreateTubeLine or Create[Lava|Microbe]WallLine instead.")]]
 void CreateTubeOrWallLine(int x1, int y1, int x2, int y2, map_id type);
+
 
 // Victory Conditions
 void CreateStarshipVictoryCondition();
