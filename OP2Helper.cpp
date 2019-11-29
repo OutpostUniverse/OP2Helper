@@ -239,6 +239,11 @@ void CenterViewOnPlayerCC() {
 	}
 }
 
+void CenterViewOn(enum PlayerNum playerNum, const LOCATION& location) {
+	Player[playerNum].CenterViewOn(location.x, location.y);
+}
+
+
 void AddMapMessage(const char* message, const Unit& sourceUnit, int soundIndex, int toPlayerNum) {
 	// Message is not modified by Outpost 2, but was not declared as const. Cast to avoid warnings/errors.
 	TethysGame::AddMessage(sourceUnit, const_cast<char*>(message), toPlayerNum, soundIndex);
