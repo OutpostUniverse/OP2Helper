@@ -105,6 +105,8 @@ void RandomizeList(int numItems, ListItemType list[])
 
 // Centers the local player's screen on their CC, if they have one.
 void CenterViewOnPlayerCC();
+// Overload taking a location object
+void CenterViewOn(enum PlayerNum playerNum, const LOCATION& location);
 
 // To send message to all players, Set toPlayerNum to -1. 
 // Default sound effect is phone ringing (sending text message to other player)
