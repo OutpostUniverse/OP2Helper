@@ -4,7 +4,7 @@
 #include <Outpost2DLL/Outpost2DLL.h>
 
 // Include other helper header files
-#include "BuildingBays.h"
+#include "BuildingBaysEnum.h"
 #include "EnumTechID.h"
 #include "EnumSoundID.h"
 #include "BaseBuilder.h"
