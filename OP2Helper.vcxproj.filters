@@ -53,5 +53,8 @@
     <ClInclude Include="Bulldozer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BuildingBaysEnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseBuilder.h" />
+    <ClInclude Include="BuildingBaysEnum.h" />
     <ClInclude Include="Bulldozer.h" />
     <ClInclude Include="ColonyType.h" />
     <ClInclude Include="EnumSoundID.h" />
