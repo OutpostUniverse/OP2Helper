@@ -14,7 +14,6 @@
     <ProjectGuid>{0B520C87-4CFD-4A4D-ABD4-F87D26DF9AAD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>OP2Helper</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
