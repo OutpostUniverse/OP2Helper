@@ -69,7 +69,7 @@ void CreateLavaWallLine(LOCATION loc1, LOCATION loc2)
 
 void CreateMicrobeWallLine(LOCATION loc1, LOCATION loc2)
 {
-	ExecuteAcrossLine(loc1, loc2, 
+	ExecuteAcrossLine(loc1, loc2,
 		[](int x, int y) { TethysGame::CreateWallOrTube(x, y, 0, map_id::mapMicrobeWall); }
 	);
 }
