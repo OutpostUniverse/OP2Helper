@@ -2,7 +2,7 @@
 
 The OP2Helper library is used to ease development of Outpost 2 missions. It wraps the Outpost2DLL library, and builds functionality on top of the exported methods. While the Outpost2DLL library is aimed at providing the raw exports from Outpost2.exe (and only the raw exports), the OP2Helper library contains custom code which builds functionality around the exported methods.
 
-The OP2Helper library is intentionally simple, in that it depends only the on exported methods from Outpost2DLL, ensuring code stays safe and portable. In particular, this library does not attempt any memory hacking to reach into the game and manipulate parts that are not exported. See [HFL](https://github.com/OutpostUniverse/HFL) and [OP2Internal](https://github.com/OutpostUniverse/OP2Internal) for more advanced memory hacking needs.
+The OP2Helper library is intentionally simple, in that it depends only on the exported methods from Outpost2DLL, ensuring code stays safe and portable. In particular, this library does not attempt any memory hacking to reach into the game and manipulate parts that are not exported. See [HFL](https://github.com/OutpostUniverse/HFL) and [OP2Internal](https://github.com/OutpostUniverse/OP2Internal) for more advanced memory hacking needs.
 
 A few things the OP2Helper library helps with:
  * Creating base layouts (as data)

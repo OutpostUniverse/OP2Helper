@@ -4,7 +4,7 @@
 //		 The enum names are the sound file names for each value.
 // Note: Some files are used more than once. The name of the file
 //		 is associated with the first soundID which references
-//		 that file. Repeated occurances are listed as commented
+//		 that file. Repeated occurrences are listed as commented
 //		 lines.
 
 
@@ -162,7 +162,7 @@ enum SoundID
 	sndSavant79		= 149,	// 0x95 "Alert, seismic event imminent"
 	sndSavant80		= 150,	// 0x96 "Warning, seismic event detected"
 	sndSavant93		= 151,	// 0x97 "Wreckage located"
-	sndSavnt278		= 152,	// 0x98 "The blight is approching"
+	sndSavnt278		= 152,	// 0x98 "The blight is approaching"
 	sndSavnt207		= 153,	// 0x99 "Damage warning"
 	sndSavant96		= 154,	// 0x9A "Mining location surveyed"
 	sndSavant97		= 155,	// 0x9B "Cannot deploy"

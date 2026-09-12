@@ -156,7 +156,7 @@ bool IsBuilding(map_id buildingType)
 
 bool IsVehicle(map_id vehicleType)
 {
-	// mapCargoTruck and mapEarthworker are respectively the first and last building indices
+	// mapCargoTruck and mapEarthworker are respectively the first and last vehicle indices
 	return ((vehicleType >= map_id::mapCargoTruck) && (vehicleType <= map_id::mapEarthworker));
 }
 
