@@ -172,7 +172,7 @@ void CreateStarshipVictoryCondition()
 	trigger = CreateCountTrigger(1, 1, -1, mapFoodCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
 	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of food to spacecraft");
 	trigger = CreateCountTrigger(1, 1, -1, mapCommonMetalsCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
-	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of Commom Metals to spacecraft");
+	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of Common Metals to spacecraft");
 	trigger = CreateCountTrigger(1, 1, -1, mapRareMetalsCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
 	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of Rare Metals to spacecraft");
 }
