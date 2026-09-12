@@ -1,0 +1,34 @@
+name: OP2Helper CI
+
+on:
+  push:
+    branches: [ main, master, '**' ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [ Win32 ]
+        configuration: [ Debug, Release ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone Outpost2DLL dependency
+        run: |
+          git clone --depth 1 https://github.com/OutpostUniverse/Outpost2DLL ../Outpost2DLL
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Build OP2Helper
+        shell: cmd
+        run: |
+          msbuild OP2Helper.sln /m /p:Configuration=%CONFIGURATION% /p:Platform=%PLATFORM%
+        env:
+          CONFIGURATION: ${{ matrix.configuration }}
+          PLATFORM: ${{ matrix.platform }}
