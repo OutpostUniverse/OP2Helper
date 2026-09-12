@@ -47,7 +47,7 @@ enum TechID
 	techAdvancedRoboticManipulatorArmEden	= 7213,
 	techAdvancedRoboticManipulatorArmPlymouth = 7214,
 	techDissipatingAdhesives				= 5202,
-	techEnhancedDefensizeFortifications		= 8306,
+	techEnhancedDefensiveFortifications		= 8306,
 	techExplosiveCharges					= 7102,
 	techForumReconfiguration				= 5408,
 	techGeothermalPower						= 5115,
