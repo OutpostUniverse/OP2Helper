@@ -2,9 +2,7 @@ name: OP2Helper CI
 
 on:
   push:
-    branches: [ main, master, '**' ]
   pull_request:
-    branches: [ main, master ]
 
 jobs:
   build:
@@ -16,14 +14,14 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Clone Outpost2DLL dependency
         run: |
           git clone --depth 1 https://github.com/OutpostUniverse/Outpost2DLL ../Outpost2DLL
 
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
+        uses: microsoft/setup-msbuild@v3
 
       - name: Build OP2Helper
         shell: cmd
