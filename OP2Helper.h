@@ -54,14 +54,14 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet = CES1Res
 
 
 // Create wall or tubes in a straight line or L pattern
-// L patterns draw counter - clockwise between the two points
+// L patterns draw counter-clockwise between the two points
 void CreateTubeLine(LOCATION loc1, LOCATION loc2);
 void CreateWallLine(LOCATION loc1, LOCATION loc2);
 void CreateLavaWallLine(LOCATION loc1, LOCATION loc2);
 void CreateMicrobeWallLine(LOCATION loc1, LOCATION loc2);
 
 // Record line of tubes or walls to a BuildingGroup in a straight line or L pattern
-// L patterns draw counter - clockwise between the two points
+// L patterns draw counter-clockwise between the two points
 void RecordTubeLine(BuildingGroup& buildingGroup, LOCATION loc1, LOCATION loc2);
 void RecordWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
 void RecordLavaWallLine(BuildingGroup& buildingGroup, const LOCATION& loc1, const LOCATION& loc2);
@@ -109,7 +109,7 @@ void CenterViewOnPlayerCC();
 // Overload taking a location object
 void CenterViewOn(enum PlayerNum playerNum, const LOCATION& location);
 
-// To send message to all players, Set toPlayerNum to -1. 
+// To send a message to all players, set toPlayerNum to -1.
 // Default sound effect is phone ringing (sending text message to other player)
 void AddMapMessage(const char* message, const Unit& sourceUnit, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);
 void AddMapMessage(const char* message, const LOCATION& location, int soundIndex = SoundID::sndMessage2, int toPlayerNum = PlayerNum::PlayerAll);

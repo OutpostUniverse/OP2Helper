@@ -78,7 +78,7 @@ struct StartLocation
 
 // Note: These are very useful for randomizing player start locations and
 //		 beacon starting locations, among other things.
-// Note: If used for placing beacons, it would be wise to have a seperate
+// Note: If used for placing beacons, it would be wise to have a separate
 //		 list for each starting location so not all the beacons end up
 //		 appearing in a single player's base, and so you don't get only a
 //		 single resource type placed on the map.

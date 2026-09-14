@@ -69,7 +69,7 @@ void CreateLavaWallLine(LOCATION loc1, LOCATION loc2)
 
 void CreateMicrobeWallLine(LOCATION loc1, LOCATION loc2)
 {
-	ExecuteAcrossLine(loc1, loc2, 
+	ExecuteAcrossLine(loc1, loc2,
 		[](int x, int y) { TethysGame::CreateWallOrTube(x, y, 0, map_id::mapMicrobeWall); }
 	);
 }
@@ -172,7 +172,7 @@ void CreateStarshipVictoryCondition()
 	trigger = CreateCountTrigger(1, 1, -1, mapFoodCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
 	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of food to spacecraft");
 	trigger = CreateCountTrigger(1, 1, -1, mapCommonMetalsCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
-	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of Commom Metals to spacecraft");
+	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of Common Metals to spacecraft");
 	trigger = CreateCountTrigger(1, 1, -1, mapRareMetalsCargo, mapAny, 1, cmpGreaterEqual, "NoResponseToTrigger");
 	CreateVictoryCondition(1, 1, trigger, "Evacuate 10000 units of Rare Metals to spacecraft");
 }

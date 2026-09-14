@@ -42,7 +42,7 @@ void CreateBase(int player, int x, int y, const BaseInfo& baseInfo)
 	{
 		TubeWallInfo &curItem = baseInfo.tubeInfo[i];
 		CreateTubeLine(
-			LOCATION(x + curItem.fromX, y + curItem.fromY), 
+			LOCATION(x + curItem.fromX, y + curItem.fromY),
 			LOCATION(x + curItem.toX, y + curItem.toY));
 	}
 
