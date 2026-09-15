@@ -45,6 +45,26 @@ void InitPlayerResources(int playerNum, const ResourceSet& resourceSet)
 	player.SetRareOre(resources.rareOre);
 }
 
+void CreateCommonOreBeacon(LOCATION loc, Yield yield, Variant variant)
+{
+	TethysGame::CreateBeacon(map_id::mapMiningBeacon, loc.x, loc.y, BeaconTypes::OreTypeCommon, yield, variant);
+}
+
+void CreateRareOreBeacon(LOCATION loc, Yield yield, Variant variant)
+{
+	TethysGame::CreateBeacon(map_id::mapMiningBeacon, loc.x, loc.y, BeaconTypes::OreTypeRare, yield, variant);
+}
+
+void CreateFumarole(LOCATION loc)
+{
+	TethysGame::CreateBeacon(map_id::mapFumarole, loc.x, loc.y, -1, -1, -1);
+}
+
+void CreateMagmaVent(LOCATION loc)
+{
+	TethysGame::CreateBeacon(map_id::mapMagmaVent, loc.x, loc.y, -1, -1, -1);
+}
+
 
 void CreateTubeLine(LOCATION loc1, LOCATION loc2)
 {

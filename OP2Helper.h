@@ -49,6 +49,19 @@ bool operator!= (const LOCATION& loc1, const LOCATION &loc2);
 // Note: The following are general purpose functions
 //		 to help you implement your map.
 
+
+// Series of functions to simplify calls to TethysGame::CreateBeacon()
+
+// Add a common ore beacon to the map
+void CreateCommonOreBeacon(LOCATION loc, Yield yield, Variant variant = Variant::VariantRandom);
+// Add a rare ore beacon to the map
+void CreateRareOreBeacon(LOCATION loc, Yield yield, Variant variant = Variant::VariantRandom);
+// Add a fumarole (source of rare ore) to the map
+void CreateFumarole(LOCATION loc);
+// Add a magma vent (source of power using a GeoCon) to the map
+void CreateMagmaVent(LOCATION loc);
+
+
 // Starting Resources
 void InitPlayerResources(int playerNum, const ResourceSet& resourceSet = CES1ResourceSet);
 
